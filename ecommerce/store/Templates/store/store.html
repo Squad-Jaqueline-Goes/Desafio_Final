@@ -47,7 +47,7 @@
                     <p class="card-text product-price">Price: ${{ product.price|floatformat:2 }}</p>
                 </div>
                 <div class="card-footer d-flex justify-content-between">
-                    <a href="#" class="btn btn-success view-btn">View</a>
+                    <a href="{% url 'product_detail' product.id %}" class="btn btn-success view-btn">View</a>
                     <button class="btn btn-warning add-btn">Add to Cart</button>
                 </div>
             </div>

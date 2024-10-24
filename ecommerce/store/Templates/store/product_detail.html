@@ -1,0 +1,38 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/main.css' %}">
+</head>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <img class="img-fluid" src="{% static 'images/placeholder.png' %}" alt="{{ product.name }}">
+        </div>
+        <div class="col-md-6">
+            <h2>{{ product.name }}</h2>
+            <p>Price: ${{ product.price|floatformat:2 }}</p>
+            <p>Description: This is a detailed description of the product.</p>
+            <a href="#" class="btn btn-success">Add to Cart</a>
+        </div>
+    </div>
+</div>
+
+<footer class="footer mt-5">
+    <div class="container text-center">
+        <div class="footer-logo mb-3">
+        </div>
+        <div class="footer-links mb-3">
+            <a href="#" class="text-white mx-2">Home</a>
+            <a href="#" class="text-white mx-2">Products</a>
+            <a href="#" class="text-white mx-2">Categories</a>
+        </div>
+        <div class="footer-address mb-2">
+            Av. Das Borboletas, 123 - B. Wonmakers - Porto Alegre/RS CEP: 1234-5678
+        </div>
+        <div>&copy; Copyright 2024 JG</div>
+    </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
