@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts - Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F8F8F8;
+        }
+
+        .cart-container {
+            padding: 50px 0;
+        }
+
+        .table th, .table td {
+            vertical-align: middle;
+            text-align: center;
+            background-color: #D1A78E;
+            color: #fff;
+        }
+
+        .table td {
+            background-color: #fff;
+            color: #333;
+        }
+
+        .table th {
+            font-weight: 600;
+        }
+
+        .cart-summary {
+            background-color: #D1A78E;
+            color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .cart-summary h4 {
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .cart-summary p {
+            font-size: 0.9rem;
+        }
+
+        .cart-summary .total {
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .cart-summary .checkout-btn {
+            background-color: #8B5D33;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .cart-summary .checkout-btn:hover {
+            background-color: #70472A;
+        }
+
+        .product-img {
+            max-width: 70px;
+            border-radius: 5px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container cart-container">
+        <div class="row">
+            <!-- Tabela de Produtos no Carrinho -->
+            <div class="col-md-8">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Produto</th>
+                            <th scope="col">Preço</th>
+                            <th scope="col">Quantidade</th>
+                            <th scope="col">Subtotal</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><img src="img/bermuda-jeans.png" alt="Bermuda Jeans" class="product-img"> Bermuda Jeans</td>
+                            <td>R$ 75,99</td>
+                            <td><input type="number" min="1" value="1" class="form-control" style="width: 60px;"></td>
+                            <td>R$ 75,99</td>
+                            <td><button class="btn btn-danger btn-sm">&times;</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Resumo do Carrinho -->
+            <div class="col-md-4">
+                <div class="cart-summary">
+                    <h4><i class="fas fa-shopping-cart"></i> Carrinho</h4>
+                    <p>Total: <s>R$ 75,99</s></p>
+                    <p>Frete: R$ 9,99</p>
+                    <p class="total">Total + Frete: R$ 85,98</p>
+                    <button class="checkout-btn">Fechar Pedido</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Font Awesome for Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+}
+.category-card {
+    margin-bottom: 30px;
+}
+.category-card h5 {
+    font-size: 1.25rem;
+    color: #9A6B4D; /* Cor personalizada para o título */
+}
+.category-card p {
+    color: #333; /* Cor da descrição */
+}

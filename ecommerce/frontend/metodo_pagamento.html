@@ -1,0 +1,132 @@
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Método de Pagamento</title>
+   
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #1C1C1C;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .payment-container {
+            background-color: white;
+            color: black;
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-container h3 {
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .form-check-label {
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-check-input {
+            margin-right: 10px;
+        }
+
+        .form-control {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .row {
+            margin-bottom: 10px;
+        }
+
+        .btn-finalize {
+            background-color: #8B5D33;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .btn-finalize:hover {
+            background-color: #70472A;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="payment-container">
+        <h3>Método de Pagamento:</h3>
+
+        
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="paymentMethod" id="googlePay" value="Google Pay">
+            <label class="form-check-label" for="googlePay">
+                <img src="/Assets/logogoogle.png" alt="Google Pay" style="width: 20px;"> Google Pay
+            </label>
+        </div>
+
+    
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="paymentMethod" id="creditCard" value="Cartão de Crédito">
+            <label class="form-check-label" for="creditCard">
+                <img src="/Assets/payment.png" alt="Cartão de Crédito" style="width: 20px;"> Cartão de Crédito
+            </label>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="paymentMethod" id="pix" value="Pix">
+            <label class="form-check-label" for="pix">
+                <img src="/Assets/logopix.png" alt="Pix" style="width: 20px;"> Pix
+            </label>
+        </div>
+
+       
+        <div class="form-group">
+            <label for="cardName">Nome no Cartão</label>
+            <input type="text" class="form-control" id="cardName" placeholder="Insira o nome conforme o cartão de crédito">
+        </div>
+
+        <div class="form-group">
+            <label for="cardNumber">Número do Cartão</label>
+            <input type="text" class="form-control" id="cardNumber" placeholder="Insira o número do cartão">
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <label for="expiryDate">Data de Validade:</label>
+                <input type="text" class="form-control" id="expiryDate" placeholder="Insira a data de validade">
+            </div>
+            <div class="col-md-4">
+                <label for="cvv">CVV</label>
+                <input type="text" class="form-control" id="cvv" placeholder="Enter CVV">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-finalize">Finalizar Compra</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

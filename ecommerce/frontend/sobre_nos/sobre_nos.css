@@ -1,0 +1,72 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.mission-vision {
+    margin: 30px 0;
+}
+
+.team-member {
+    margin-bottom: 30px;
+}
+
+.team-member img {
+    border-radius: 50%;
+    max-width: 150px;
+    margin-bottom: 10px;
+}
+
+.idealizadoras {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.idealizadoras h4 {
+    margin-bottom: 30px;
+}
+
+.idealizadoras .member {
+    margin: 20px;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.mission-vision {
+    margin: 30px 0;
+}
+
+.team-member {
+    margin-bottom: 30px;
+}
+
+.team-member img {
+    border-radius: 50%;
+    max-width: 150px;
+    margin-bottom: 10px;
+}
+
+.idealizadoras {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.idealizadoras h4 {
+    margin-bottom: 30px;
+}
+
+.idealizadoras .member {
+    margin: 20px;
+}
+
+.member img {
+    border-radius: 50%; /* Forma oval */
+    max-width: 120px; /* Tamanho da imagem */
+    margin-bottom: 10px;
+}
+
+.social-links {
+    margin-top: 10px;
+}
