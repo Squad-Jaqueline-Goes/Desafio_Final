@@ -4,13 +4,11 @@
     <link rel="stylesheet" type="text/css" href="{% static 'styles/main.css' %}">
 </head>
 
-<link rel="stylesheet" type="text/css" href="{% static 'styles/main.css' %}">
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
         <a class="navbar-brand" href="#">
-    <img src="{% static 'images/logo.png' %}" alt="JG Fashion Logo" width="50">
-</a>
+            <img src="{% static 'images/logo.png' %}" alt="JG Fashion Logo" width="50">
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -37,30 +35,30 @@
 </nav>
 
 <div class="container mt-5">
-    <div class="row product-container">
-        {% for product in products %}
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card product-card">
-                <img class="card-img-top product-image" src="{% static 'images/placeholder.png' %}" alt="{{ product.name }}">
-                <div class="card-body">
-                    <h5 class="card-title product-title">{{ product.name }}</h5>
-                    <p class="card-text product-price">Price: ${{ product.price|floatformat:2 }}</p>
+    <h1>Carrinho de Compras</h1>
+
+    {% if order_items.count == 0 %}
+        <p>Seu carrinho está vazio.</p>
+    {% else %}
+        <ul class="list-group">
+        {% for item in order_items %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                    <strong>{{ item.product.name }}</strong> - {{ item.quantity }} x R$ {{ item.product.price|floatformat:2 }} 
                 </div>
-                <div class="card-footer d-flex justify-content-between">
-                    <a href="{% url 'product_detail' product.id %}" class="btn btn-success view-btn">View</a>
-                    <a href="{% url 'add_to_cart' product.id %}" class="btn btn-warning add-btn">Add to Cart</a> 
-                </div>
-            </div>
-        </div>
+                <a href="#" class="btn btn-danger btn-sm">Remover</a>
+            </li>
         {% endfor %}
-    </div>
+        </ul>
+    {% endif %}
+
+    <a href="{% url 'store' %}" class="btn btn-primary mt-3">Continuar Comprando</a>
 </div>
 
 <footer class="footer mt-5">
     <div class="container text-center">
         <div class="footer-logo mb-3">
-
-</div>
+        </div>
         <div class="footer-links mb-3">
             <a href="#" class="text-white mx-2">Home</a>
             <a href="#" class="text-white mx-2">Products</a>
@@ -72,6 +70,7 @@
         <div>&copy; Copyright 2024 JG</div>
     </div>
 </footer>
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
