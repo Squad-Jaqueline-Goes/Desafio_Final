@@ -1,0 +1,81 @@
+# E-commerce - Squad Jaqueline_Goes 🔬🧬 
+Este é o projeto final de e-commerce desenvolvido durante o bootcamp Python e Django - WoMakers Code 🦋. 
+
+O objetivo é criar uma plataforma de comércio eletrônico utilizando Python e outras tecnologias.
+
+## Funcionalidades 🚀
+- Cadastro de usuários 👥
+- Listagem de produtos 🛍️
+- Carrinho de compras 🛒
+- Processamento de pagamentos 💳
+- Histórico de pedidos 📜
+
+## Tecnologias Utilizadas 💻
+- Python 🐍
+- Django 🌐
+- SQLite 🗄️
+- HTML/CSS 🎨
+- JavaScript 📜
+
+## Como Executar o Projeto 🛠️
+1. Clone o repositório:
+    ```bash
+    git clone https://github.com/Squad-Jaqueline-Goes/Desafio_Final.git
+    ```
+2. Navegue até o diretório do projeto:
+    ```bash
+    cd ecommerce
+    ```
+3. Crie um ambiente virtual:
+    ```bash
+    python -m venv venv
+    ```
+4. Ative o ambiente virtual:
+    - No Windows:
+        ```bash
+        venv\Scripts\activate
+        ```
+    - No Linux/Mac:
+        ```bash
+        source venv/bin/activate
+        ```
+5. Instale as dependências:
+    ```bash
+    pip install -r requirements.txt
+    ```
+6. Execute as migrações do banco de dados:
+    ```bash
+    python manage.py migrate
+    ```
+7. Inicie o servidor de desenvolvimento:
+    ```bash
+    python manage.py runserver
+    ```
+
+## Squad 👩‍💻
+
+### Liderança 🌟
+
+- **Ana Carolyne Pereira De Souza** - [GitHub](https://github.com/anadevti) - [LinkedIn](https://www.linkedin.com/in/ana-carolyne-pereira-de-souza/)
+
+### Integrantes 🌟
+
+- **Alice Barbosa Belchior** - [GitHub](https://github.com/alicebelchior) - [LinkedIn](https://www.linkedin.com/in/alice-belchior/)
+- **Fernanda Garcia Barbosa** - [GitHub](https://github.com/NandayGB) - [LinkedIn](https://www.linkedin.com/in/barbosaafernanda/)
+- **Larissa de Albuquerque Santos** - [GitHub](https://github.com/lalbuquerques) - [LinkedIn](https://www.linkedin.com/in/larissa-albuquerque-379b40114/)
+- **Ludmylla Martins Caetano** - [GitHub](https://github.com/ludmyllacaetano) - [LinkedIn](https://www.linkedin.com/in/ludmylla-caetano/)
+- **Roberta da Silva de Oliveira** - [GitHub](https://github.com/RobertaOliveira07) - [LinkedIn](https://www.linkedin.com/in/roberta-oliveira07/) 
+- **Yasmin Souza Camargo** - [GitHub](https://github.com/Yasmin-Camargo) - [LinkedIn](https://www.linkedin.com/in/yasmin-souza-camargo-4a036b163/)
+
+## Divisão de Tarefas 🔄
+
+A divisão das tarefas foi decidida durante uma reunião e divida da seguinte maneira:
+https://drive.google.com/file/d/18D7CqET9m_jfA94SCJUY-VTdmZIeWGfp/view?usp=sharing
+
+## Reuniões e Comunicação 📅
+
+- **Reunião Inicial**: 
+  - Realizamos uma reunião para discutir o progresso e alinhar atividades. As reuniões ocorrem via [Discord](https://discord.com).
+
+- **Comunicação**: 
+  - Utilizamos o [Discord](https://discord.com) para comunicação. O canal principal do projeto é #squad-jaqueline-goes.
