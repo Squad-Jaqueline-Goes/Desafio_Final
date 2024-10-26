@@ -18,6 +18,19 @@ def product_detail(request, id_product):
     context = {'product': product}
     return render(request, 'store/product_detail.html', context)
 
+def product_search(request):
+    query = request.GET.get('q') 
+    products = Product.objects.all()
+
+    if query:
+        products = products.filter(
+            models.Q(name__icontains=query) |
+            models.Q(description__icontains=query) |
+            models.Q(category__name__icontains=query)
+        )
+
+    return render(request, 'store/product_search.html', {'products': products})
+
 def get_cart(request):
     if request.user.is_authenticated:
         customer = request.user.customer  
