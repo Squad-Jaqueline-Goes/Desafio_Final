@@ -33,7 +33,7 @@ O objetivo é criar uma plataforma de comércio eletrônico utilizando Python e 
 4. Ative o ambiente virtual:
     - No Windows:
         ```bash
-        venv\Scripts\activate
+        .\.venv\Scripts\activate
         ```
     - No Linux/Mac:
         ```bash
@@ -47,7 +47,12 @@ O objetivo é criar uma plataforma de comércio eletrônico utilizando Python e 
     ```bash
     python manage.py migrate
     ```
-7. Inicie o servidor de desenvolvimento:
+7. Carregar os dados iniciais no banco de dados
+    ```bash
+    python manage.py loaddata store/fixtures/initial_data.json
+    ```
+
+8. Inicie o servidor de desenvolvimento:
     ```bash
     python manage.py runserver
     ```

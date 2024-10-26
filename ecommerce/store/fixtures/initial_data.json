@@ -1,0 +1,163 @@
+[
+    {
+        "model": "store.category",
+        "pk": 1,
+        "fields": {
+            "name": "Camisetas"
+        }
+    },
+    {
+        "model": "store.category",
+        "pk": 2,
+        "fields": {
+            "name": "Calças"
+        }
+    },
+    {
+        "model": "store.category",
+        "pk": 3,
+        "fields": {
+            "name": "Vestidos"
+        }
+    },
+    {
+        "model": "store.category",
+        "pk": 4,
+        "fields": {
+            "name": "Jaquetas"
+        }
+    },
+    {
+        "model": "store.category",
+        "pk": 5,
+        "fields": {
+            "name": "Acessórios"
+        }
+    },
+    {
+        "model": "store.customer",
+        "pk": 1,
+        "fields": {
+            "name": "Ana Silva",
+            "email": "ana.silva@example.com"
+        }
+    },
+    {
+        "model": "store.customer",
+        "pk": 2,
+        "fields": {
+            "name": "Pedro Oliveira",
+            "email": "pedro.oliveira@example.com"
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 1,
+        "fields": {
+            "name": "Camiseta Básica",
+            "price": 39.90,
+            "digital": false,
+            "delete_product": false,
+            "category": 1
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 2,
+        "fields": {
+            "name": "Camiseta Estampada",
+            "price": 49.90,
+            "digital": false,
+            "delete_product": false,
+            "category": 1
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 3,
+        "fields": {
+            "name": "Calça Jeans",
+            "price": 89.90,
+            "digital": false,
+            "delete_product": false,
+            "category": 2
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 4,
+        "fields": {
+            "name": "Calça de Moletom",
+            "price": 79.90,
+            "digital": false,
+            "delete_product": false,
+            "category": 2
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 5,
+        "fields": {
+            "name": "Vestido Floral",
+            "price": 129.90,
+            "digital": false,
+            "delete_product": false,
+            "category": 3
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 6,
+        "fields": {
+            "name": "Vestido de Festa",
+            "price": 199.90,
+            "digital": false,
+            "delete_product": false,
+            "category": 3
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 7,
+        "fields": {
+            "name": "Jaqueta de Couro",
+            "price": 299.90,
+            "digital": false,
+            "delete_product": false,
+            "category": 4
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 8,
+        "fields": {
+            "name": "Jaqueta de Inverno",
+            "price": 249.90,
+            "digital": false,
+            "delete_product": false,
+            "category": 4
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 9,
+        "fields": {
+            "name": "Cinto de Couro",
+            "price": 59.90,
+            "digital": false,
+            "delete_product": false,
+            "category": 5
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 10,
+        "fields": {
+            "name": "Boné Estiloso",
+            "price": 39.90,
+            "digital": false,
+            "delete_product": false,
+            "category": 5
+        }
+    }
+]

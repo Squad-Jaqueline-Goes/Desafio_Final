@@ -7,6 +7,12 @@ from django.contrib.auth.models import User
 Cada classe representa uma tabela no banco de dados.
 '''
 
+class Category(models.Model):
+    name = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
+
 class Customer(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=200, null=True)
@@ -20,6 +26,7 @@ class Product(models.Model):
     price = models.FloatField()
     digital = models.BooleanField(default=False, null=True, blank=True)
     delete_product = models.BooleanField(default=False, null=True, blank=True)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -53,3 +60,12 @@ class ShippingAddress(models.Model):
 
     def __str__(self):
         return self.address
+
+class Payment(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    payment_type = models.CharField(max_length=100)
+    amount = models.FloatField()
+    date_paid = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Payment {self.id} - {self.order.transaction_id}"

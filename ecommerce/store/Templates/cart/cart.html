@@ -46,7 +46,7 @@
                 <div>
                     <strong>{{ item.product.name }}</strong> - {{ item.quantity }} x R$ {{ item.product.price|floatformat:2 }} 
                 </div>
-                <a href="#" class="btn btn-danger btn-sm">Remover</a>
+                <a href="{% url 'remove_from_cart' item.product.id %}" class="btn btn-danger btn-sm">Remover</a>
             </li>
         {% endfor %}
         </ul>
