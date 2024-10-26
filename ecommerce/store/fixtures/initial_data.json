@@ -58,7 +58,9 @@
             "price": 39.90,
             "digital": false,
             "delete_product": false,
-            "category": 1
+            "category": 1,
+            "image_url": "https://images.pexels.com/photos/4066292/pexels-photo-4066292.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            "description": "Camiseta básica de algodão, confortável e ideal para o uso diário."
         }
     },
     {
@@ -69,7 +71,9 @@
             "price": 49.90,
             "digital": false,
             "delete_product": false,
-            "category": 1
+            "category": 1,
+            "image_url": "https://images.pexels.com/photos/701771/pexels-photo-701771.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            "description": "Camiseta estampada com design moderno e divertido."
         }
     },
     {
@@ -80,7 +84,9 @@
             "price": 89.90,
             "digital": false,
             "delete_product": false,
-            "category": 2
+            "category": 2,
+            "image_url": "https://images.pexels.com/photos/1297363/pexels-photo-1297363.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            "description": "Calça jeans clássica, perfeita para qualquer ocasião."
         }
     },
     {
@@ -91,7 +97,9 @@
             "price": 79.90,
             "digital": false,
             "delete_product": false,
-            "category": 2
+            "category": 2,
+            "image_url": "https://media.istockphoto.com/id/1266458838/pt/foto/sporty-woman-standing-on-the-bridge-during-sunrise.jpg?s=1024x1024&w=is&k=20&c=fc8wX4hdsaxtHgmIHwQ7POBEQSaV0NdQznlOLC6aiuc=",
+            "description": "Calça de moletom aconchegante, ideal para momentos de lazer."
         }
     },
     {
@@ -102,7 +110,9 @@
             "price": 129.90,
             "digital": false,
             "delete_product": false,
-            "category": 3
+            "category": 3,
+            "image_url": "https://images.pexels.com/photos/908929/pexels-photo-908929.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            "description": "Vestido floral leve e arejado, perfeito para o verão."
         }
     },
     {
@@ -113,7 +123,9 @@
             "price": 199.90,
             "digital": false,
             "delete_product": false,
-            "category": 3
+            "category": 3,
+            "image_url": "https://media.istockphoto.com/id/1417865925/pt/foto/beautiful-woman-in-elegant-black-evening-dress.jpg?s=1024x1024&w=is&k=20&c=kXM7AO5fRUIOJP6bZ6pKMD3xw1e8CdAi6YOREXmqxLQ=",
+            "description": "Vestido de festa elegante, ideal para ocasiões especiais."
         }
     },
     {
@@ -124,7 +136,9 @@
             "price": 299.90,
             "digital": false,
             "delete_product": false,
-            "category": 4
+            "category": 4,
+            "image_url": "https://images.pexels.com/photos/1034859/pexels-photo-1034859.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            "description": "Jaqueta de couro clássica, um item indispensável no guarda-roupa."
         }
     },
     {
@@ -135,7 +149,9 @@
             "price": 249.90,
             "digital": false,
             "delete_product": false,
-            "category": 4
+            "category": 4,
+            "image_url": "https://images.pexels.com/photos/1868735/pexels-photo-1868735.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            "description": "Jaqueta de inverno quentinha, perfeita para os dias frios."
         }
     },
     {
@@ -146,7 +162,8 @@
             "price": 59.90,
             "digital": false,
             "delete_product": false,
-            "category": 5
+            "category": 5,
+            "description": "Cinto de couro durável, ideal para complementar seu visual."
         }
     },
     {
@@ -157,7 +174,8 @@
             "price": 39.90,
             "digital": false,
             "delete_product": false,
-            "category": 5
+            "category": 5,
+            "description": "Boné estiloso para dar um toque moderno ao seu look."
         }
     }
 ]

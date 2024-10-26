@@ -24,9 +24,11 @@ class Customer(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=200)
     price = models.FloatField()
+    image_url = models.URLField(max_length=200, null=True, blank=True)
     digital = models.BooleanField(default=False, null=True, blank=True)
     delete_product = models.BooleanField(default=False, null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.name

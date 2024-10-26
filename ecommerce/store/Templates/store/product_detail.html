@@ -21,7 +21,7 @@
                     <a class="nav-link" href="../../cart">Carrinho</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Categories</a>
+                    <a class="nav-link" href="#">Categorias</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Sobre Nós</a>
@@ -37,13 +37,18 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-6">
-            <img class="img-fluid" src="{% static 'images/placeholder.png' %}" alt="{{ product.name }}">
+            {% if product.image_url %}
+                <img class="card-img-top product-image" src="{{ product.image_url }}" alt="{{ product.name }}">
+            {% else %}
+                <img class="card-img-top product-image" src="{% static 'images/placeholder.png' %}" alt="{{ product.name }}">
+            {% endif %}
         </div>
         <div class="col-md-6">
             <h2>{{ product.name }}</h2>
-            <p>Price: ${{ product.price|floatformat:2 }}</p>
-            <p>Description: This is a detailed description of the product.</p>
-            <a href="{% url 'add_to_cart' product.id %}" class="btn btn-warning add-btn">Add to Cart</a>
+            <p>Preço: ${{ product.price|floatformat:2 }}</p>
+            <p>Categoria: {{ product.category.name }}</p>
+            <p>Descrição: {% if product.description %}{{ product.description }}{% else %}Esta descrição está indisponível no momento.{% endif %}</p> 
+            <a href="{% url 'add_to_cart' product.id %}" class="btn btn-warning add-btn">Adicionar ao carrinho</a>
         </div>
     </div>
 </div>
@@ -54,8 +59,8 @@
         </div>
         <div class="footer-links mb-3">
             <a href="index" class="text-white mx-2">Home</a>
-            <a href="#" class="text-white mx-2">Products</a>
-            <a href="#" class="text-white mx-2">Categories</a>
+            <a href="#" class="text-white mx-2">Produtos</a>
+            <a href="#" class="text-white mx-2">Categorias</a>
         </div>
         <div class="footer-address mb-2">
             Av. Das Borboletas, 123 - B. Wonmakers - Porto Alegre/RS CEP: 1234-5678
@@ -63,6 +68,7 @@
         <div>&copy; Copyright 2024 JG</div>
     </div>
 </footer>
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
