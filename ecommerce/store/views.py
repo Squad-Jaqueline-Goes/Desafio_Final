@@ -8,7 +8,8 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
 from .forms import CustomUserCreationForm
-from .models import Address
+from .models import Customer, Address
+from django.contrib.auth import logout
 
 
 def store(request):
@@ -172,6 +173,7 @@ def register(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
+            Customer.objects.create(user=user)
             Address.objects.create(
                 customer=user,
                 street=form.cleaned_data.get('street'),
@@ -184,6 +186,7 @@ def register(request):
             return redirect('store')
     else:
         form = CustomUserCreationForm()
+
     return render(request, 'registration/register.html', {'form': form})
 
 def login_view(request):
@@ -208,4 +211,4 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     messages.info(request, "Você saiu da sua conta.")
-    return redirect('store/store.html')
+    return redirect('store')

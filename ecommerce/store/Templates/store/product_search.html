@@ -41,6 +41,14 @@
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
                     </form>
                 </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <form class="display:inline;" method="POST" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button class="btn btn-danger" type="submit">Sair</button>
+                        </form>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </div>
