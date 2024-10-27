@@ -63,6 +63,17 @@ class ShippingAddress(models.Model):
     def __str__(self):
         return self.address
 
+class Address(models.Model):
+    customer = models.ForeignKey(User, on_delete=models.CASCADE)
+    street = models.CharField(max_length=255)
+    city = models.CharField(max_length=100)
+    state = models.CharField(max_length=100)
+    zipcode = models.CharField(max_length=20)
+    country = models.CharField(max_length=100, default="Brazil")
+
+    def __str__(self):
+        return f"{self.user.username} - {self.street}, {self.city}"
+
 class Payment(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     payment_type = models.CharField(max_length=100)
