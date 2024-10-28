@@ -15,10 +15,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="../../store">Home</a>
+                    <a class="nav-link" href="{% url 'store' %}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../../cart">Carrinho</a>
+                    <a class="nav-link" href="{% url 'cart' %}">Carrinho</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Categorias</a>
@@ -27,13 +27,13 @@
                     <a class="nav-link" href="#">Sobre Nós</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contato</a>
+                    <a class="nav-link" href="{% url 'contact' %}">Contato</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../register">Cadastrar</a>
+                    <a class="nav-link" href="{% url 'register' %}">Cadastrar</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../login">Login</a>
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
                 </li>
                 <li class="nav-item">
                     <form class="form-inline" method="GET" action="{% url 'product_search' %}">
@@ -43,7 +43,7 @@
                 </li>
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <form class="display:inline;" method="POST" action="{% url 'logout' %}">
+                        <form class="d-inline" method="POST" action="{% url 'logout' %}">
                             {% csrf_token %}
                             <button class="btn btn-danger" type="submit">Sair</button>
                         </form>
@@ -55,15 +55,31 @@
 </nav>
 
 <div class="container mt-5">
-    <h2>Login</h2>
-    <div class="card-body">
-        <form method="post">
-            <div class="form-group">
-                {% csrf_token %}
-                {{ form.as_p }}
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0" style="border-radius: 15px;">
+                <div class="card-header bg-primary text-white text-center" style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
+                    <h4>Login</h4>
+                </div>
+                <div class="card-body p-4">
+                    <form method="post">
+                        {% csrf_token %}
+                        {% for field in form %}
+                            <div class="form-group">
+                                <label for="{{ field.id_for_label }}" class="font-weight-bold">{{ field.label }}</label>
+                                {{ field }}
+                                {% if field.errors %}
+                                    <small class="form-text text-danger">{{ field.errors }}</small>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                        <div class="text-center mt-4">
+                            <button class="btn btn-success btn-block" type="submit">Entrar <i class="fas fa-sign-in-alt"></i></button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Entrar</button>
-        </form>
+        </div>
     </div>
 </div>
 
@@ -72,7 +88,7 @@
         <div class="footer-logo mb-3">
         </div>
         <div class="footer-links mb-3">
-            <a href="#" class="text-white mx-2">Home</a>
+            <a href="{% url 'store' %}" class="text-white mx-2">Home</a>
             <a href="#" class="text-white mx-2">Products</a>
             <a href="#" class="text-white mx-2">Categories</a>
         </div>
@@ -86,3 +102,4 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
