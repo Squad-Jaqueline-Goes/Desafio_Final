@@ -1,10 +1,12 @@
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
 from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
 
 '''
-Cada classe representa uma tabela no banco de dados.
+Each class represents a table in the database.
 '''
 
 class Category(models.Model):
@@ -32,9 +34,6 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
-        return self.price
-        return self.digital
-        return self.delete_product
 
 class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)
@@ -44,6 +43,11 @@ class Order(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+    def get_total(self):
+        order_items = OrderItem.objects.filter(order=self)
+        total = sum([item.product.price * item.quantity for item in order_items])
+        return total
 
 class OrderItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
@@ -82,3 +86,59 @@ class Payment(models.Model):
 
     def __str__(self):
         return f"Payment {self.id} - {self.order.transaction_id}"
+
+# Finalize order
+@login_required
+def finalize_order(request):
+    customer = Customer.objects.get(user=request.user)
+    order, created = Order.objects.get_or_create(customer=customer, complete=False)
+    order_items = OrderItem.objects.filter(order=order)
+
+    if request.method == "POST":
+        order.complete = True
+        order.save()
+        # Clear the items in the cart (currently associated with the incomplete order)
+        order_items.delete()
+        return redirect('order_details', order_id=order.id)
+
+    return render(request, 'finalize_order.html', {'order': order, 'items': order_items})
+
+# Order details
+@login_required
+def order_details(request, order_id):
+    order = get_object_or_404(Order, id=order_id, customer__user=request.user)
+    order_items = OrderItem.objects.filter(order=order)
+    return render(request, 'order_details.html', {'order': order, 'items': order_items})
+
+# Add item to order (used to add to cart)
+@login_required
+def add_to_cart(request, product_id):
+    customer = Customer.objects.get(user=request.user)
+    order, created = Order.objects.get_or_create(customer=customer, complete=False)
+    product = get_object_or_404(Product, id=product_id)
+    order_item, created = OrderItem.objects.get_or_create(order=order, product=product)
+    order_item.quantity += 1
+    order_item.save()
+    return redirect('cart')
+
+# Shopping cart
+@login_required
+def cart(request):
+    customer = Customer.objects.get(user=request.user)
+    order, created = Order.objects.get_or_create(customer=customer, complete=False)
+    order_items = OrderItem.objects.filter(order=order)
+    return render(request, 'cart.html', {'order': order, 'items': order_items})
+
+# Remove item from cart
+@login_required
+def remove_from_cart(request, product_id):
+    customer = Customer.objects.get(user=request.user)
+    order = get_object_or_404(Order, customer=customer, complete=False)
+    product = get_object_or_404(Product, id=product_id)
+    order_item = get_object_or_404(OrderItem, order=order, product=product)
+    if order_item.quantity > 1:
+        order_item.quantity -= 1
+        order_item.save()
+    else:
+        order_item.delete()
+    return redirect('cart')
