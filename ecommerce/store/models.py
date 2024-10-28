@@ -1,11 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
-
-'''
-Cada classe representa uma tabela no banco de dados.
-'''
+# Criação das tabelas no banco de dados
 
 class Category(models.Model):
     name = models.CharField(max_length=200)
@@ -32,9 +28,13 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
-        return self.price
-        return self.digital
-        return self.delete_product
+
+class Stock(models.Model):
+    product = models.OneToOneField(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField()
+
+    def __str__(self):
+        return f"{self.product.name} - {self.quantity} em estoque"
 
 class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)
@@ -43,13 +43,16 @@ class Order(models.Model):
     transaction_id = models.CharField(max_length=100, null=True)
 
     def __str__(self):
-        return str(self.id)
+        return f"Pedido {self.id} - {self.customer.name if self.customer else 'Sem cliente'}"
 
 class OrderItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
     quantity = models.IntegerField(default=0, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.quantity} x {self.product.name} - Pedido {self.order.id}"
 
 class ShippingAddress(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
@@ -61,7 +64,7 @@ class ShippingAddress(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.address
+        return f"{self.address}, {self.city}"
 
 class Address(models.Model):
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -72,7 +75,7 @@ class Address(models.Model):
     country = models.CharField(max_length=100, default="Brazil")
 
     def __str__(self):
-        return f"{self.user.username} - {self.street}, {self.city}"
+        return f"{self.customer.username} - {self.street}, {self.city}"
 
 class Payment(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
