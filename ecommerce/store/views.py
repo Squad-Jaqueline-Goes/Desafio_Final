@@ -5,6 +5,11 @@ import datetime
 from .models import *
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, authenticate
+from .forms import CustomUserCreationForm
+from .models import Customer, Address
+from django.contrib.auth import logout
 
 
 def store(request):
@@ -162,3 +167,48 @@ def checkout(request):
 
     context = {'items': items, 'order': order}
     return render(request, 'store/checkout.html', context)
+
+def register(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            Customer.objects.create(user=user)
+            Address.objects.create(
+                customer=user,
+                street=form.cleaned_data.get('street'),
+                city=form.cleaned_data.get('city'),
+                state=form.cleaned_data.get('state'),
+                zipcode=form.cleaned_data.get('zipcode'),
+                country=form.cleaned_data.get('country'),
+            )
+            login(request, user)
+            return redirect('store')
+    else:
+        form = CustomUserCreationForm()
+
+    return render(request, 'registration/register.html', {'form': form})
+
+def login_view(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                messages.success(request, f"Bem-vindo, {username}!")
+                return redirect('store')
+            else:
+                messages.error(request, 'Nome de usuário ou senha incorretos.')
+        else:
+            messages.error(request, 'Nome de usuário ou senha incorretos.')
+    else:
+        form = AuthenticationForm()
+    return render(request, 'registration/login.html', {'form': form})
+
+def logout_view(request):
+    logout(request)
+    messages.info(request, "Você saiu da sua conta.")
+    return redirect('store')

@@ -30,11 +30,25 @@
                     <a class="nav-link" href="#">Contato</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="../register">Cadastrar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../login">Login</a>
+                </li>
+                <li class="nav-item">
                     <form class="form-inline" method="GET" action="{% url 'product_search' %}">
                         <input class="form-control mr-sm-2" type="search" placeholder="Buscar produtos" name="q" aria-label="Search">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
                     </form>
                 </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <form class="display:inline;" method="POST" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button class="btn btn-danger" type="submit">Sair</button>
+                        </form>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </div>
