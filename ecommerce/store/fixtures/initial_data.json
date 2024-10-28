@@ -1,0 +1,181 @@
+[
+    {
+        "model": "store.category",
+        "pk": 1,
+        "fields": {
+            "name": "Camisetas"
+        }
+    },
+    {
+        "model": "store.category",
+        "pk": 2,
+        "fields": {
+            "name": "Calças"
+        }
+    },
+    {
+        "model": "store.category",
+        "pk": 3,
+        "fields": {
+            "name": "Vestidos"
+        }
+    },
+    {
+        "model": "store.category",
+        "pk": 4,
+        "fields": {
+            "name": "Jaquetas"
+        }
+    },
+    {
+        "model": "store.category",
+        "pk": 5,
+        "fields": {
+            "name": "Acessórios"
+        }
+    },
+    {
+        "model": "store.customer",
+        "pk": 1,
+        "fields": {
+            "name": "Ana Silva",
+            "email": "ana.silva@example.com"
+        }
+    },
+    {
+        "model": "store.customer",
+        "pk": 2,
+        "fields": {
+            "name": "Pedro Oliveira",
+            "email": "pedro.oliveira@example.com"
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 1,
+        "fields": {
+            "name": "Camiseta Básica",
+            "price": 39.90,
+            "digital": false,
+            "delete_product": false,
+            "category": 1,
+            "image_url": "https://images.pexels.com/photos/4066292/pexels-photo-4066292.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            "description": "Camiseta básica de algodão, confortável e ideal para o uso diário."
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 2,
+        "fields": {
+            "name": "Camiseta Estampada",
+            "price": 49.90,
+            "digital": false,
+            "delete_product": false,
+            "category": 1,
+            "image_url": "https://images.pexels.com/photos/701771/pexels-photo-701771.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            "description": "Camiseta estampada com design moderno e divertido."
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 3,
+        "fields": {
+            "name": "Calça Jeans",
+            "price": 89.90,
+            "digital": false,
+            "delete_product": false,
+            "category": 2,
+            "image_url": "https://images.pexels.com/photos/1297363/pexels-photo-1297363.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            "description": "Calça jeans clássica, perfeita para qualquer ocasião."
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 4,
+        "fields": {
+            "name": "Calça de Moletom",
+            "price": 79.90,
+            "digital": false,
+            "delete_product": false,
+            "category": 2,
+            "image_url": "https://media.istockphoto.com/id/1266458838/pt/foto/sporty-woman-standing-on-the-bridge-during-sunrise.jpg?s=1024x1024&w=is&k=20&c=fc8wX4hdsaxtHgmIHwQ7POBEQSaV0NdQznlOLC6aiuc=",
+            "description": "Calça de moletom aconchegante, ideal para momentos de lazer."
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 5,
+        "fields": {
+            "name": "Vestido Floral",
+            "price": 129.90,
+            "digital": false,
+            "delete_product": false,
+            "category": 3,
+            "image_url": "https://images.pexels.com/photos/908929/pexels-photo-908929.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            "description": "Vestido floral leve e arejado, perfeito para o verão."
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 6,
+        "fields": {
+            "name": "Vestido de Festa",
+            "price": 199.90,
+            "digital": false,
+            "delete_product": false,
+            "category": 3,
+            "image_url": "https://media.istockphoto.com/id/1417865925/pt/foto/beautiful-woman-in-elegant-black-evening-dress.jpg?s=1024x1024&w=is&k=20&c=kXM7AO5fRUIOJP6bZ6pKMD3xw1e8CdAi6YOREXmqxLQ=",
+            "description": "Vestido de festa elegante, ideal para ocasiões especiais."
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 7,
+        "fields": {
+            "name": "Jaqueta de Couro",
+            "price": 299.90,
+            "digital": false,
+            "delete_product": false,
+            "category": 4,
+            "image_url": "https://images.pexels.com/photos/1034859/pexels-photo-1034859.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            "description": "Jaqueta de couro clássica, um item indispensável no guarda-roupa."
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 8,
+        "fields": {
+            "name": "Jaqueta de Inverno",
+            "price": 249.90,
+            "digital": false,
+            "delete_product": false,
+            "category": 4,
+            "image_url": "https://images.pexels.com/photos/1868735/pexels-photo-1868735.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            "description": "Jaqueta de inverno quentinha, perfeita para os dias frios."
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 9,
+        "fields": {
+            "name": "Cinto de Couro",
+            "price": 59.90,
+            "digital": false,
+            "delete_product": false,
+            "category": 5,
+            "description": "Cinto de couro durável, ideal para complementar seu visual."
+        }
+    },
+    {
+        "model": "store.product",
+        "pk": 10,
+        "fields": {
+            "name": "Boné Estiloso",
+            "price": 39.90,
+            "digital": false,
+            "delete_product": false,
+            "category": 5,
+            "description": "Boné estiloso para dar um toque moderno ao seu look."
+        }
+    }
+]
