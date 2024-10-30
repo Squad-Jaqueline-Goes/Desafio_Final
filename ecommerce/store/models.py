@@ -43,7 +43,8 @@ class Order(models.Model):
     transaction_id = models.CharField(max_length=100, null=True)
 
     def __str__(self):
-        return f"Pedido {self.id} - {self.customer.name if self.customer else 'Sem cliente'}"
+        # Certifique-se de que os campos usados aqui não sejam None
+        return f"Pedido {self.id} - {self.customer.name if self.customer else 'Cliente Desconhecido'} - {self.transaction_id or 'Sem transação'}"
 
 class OrderItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
