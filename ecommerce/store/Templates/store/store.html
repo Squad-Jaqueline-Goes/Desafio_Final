@@ -64,7 +64,7 @@
                         <li class="nav-item">
                             <form class="display:inline;" color="gray"; method="POST" action="{% url 'logout' %}">
                                 {% csrf_token %}
-                                <button class="btn btn-danger" type="submit">Sair</button>
+                                <button class="btn btn-danger" type="submit" style="background-color: gray; padding: 8px 20px;  margin-left: 10px;">Sair</button>
                             </form>
                         </li>
                     {% else %}
