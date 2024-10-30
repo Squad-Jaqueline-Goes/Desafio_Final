@@ -1,98 +1,143 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobre Nós</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" />
-    <link rel="stylesheet" href="./sobre_nos.css"/>
+    <title>JG Roupas - Sobre Nós</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #000;
+        }
+        h4, h5 {
+            color: #682D03;
+            font-size: 2.2rem; 
+            font-weight: bold; 
+        }
+        .intro-text {
+            text-align: center;
+            font-size: 2rem;
+            margin: 20px 0;
+        }
+        .sobre-nos {
+            text-align: center;
+            color: #000;
+            font-size: 1rem; 
+            max-width: 800px;
+            margin: 20px auto;
+            line-height: 1.6;
+        }
+        .team-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .member {
+            text-align: center;
+            max-width: 150px;
+        }
+        .member img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid #682D03;
+        }
+        .social-links a {
+            color: #682D03;
+            margin: 0 5px;
+            text-decoration: none;
+        }
+        .social-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
 
-    <header class="bg-light">
-        <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="navbar-brand" href="#">
-                    <img src="..Assets/logo.png" alt="Logo" width="50">
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Categorias</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#">Sobre Nós</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Contato</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    </header>
+<div class="container text-center mt-5">
+    <h5>Sobre nós</h5>
+    <div class="sobre-nos mt-4">
+        <p>
+            A JG é mais do que uma loja de roupas; é um reflexo da diversidade, força e autenticidade que define as pessoas no Brasil. Nossa essência nasce das raízes do país, e cada peça que criamos busca transmitir a resiliência, coragem e liberdade de quem traça sua própria jornada, seja nas cidades dinâmicas ou nos cantos tranquilos do interior. Nossa moda é pensada para quem busca autenticidade, conforto e estilo, independentemente de gênero. As peças da JG celebram a individualidade e o bem-estar, oferecendo versatilidade e sofisticação em cada detalhe. Com uma paleta de cores neutras e terrosas, inspirada nas paisagens brasileiras, nossas criações conectam-se tanto com a natureza quanto com a essência de cada pessoa.
+        </p>
 
-    <div class="sobre-ns-histria">
-        <div class="sobre-ns">Sobre nós </div>
-        <div class="a-jg-mais-do-que-uma-loja-de-wrapper">
-        <div class="a-jg">A JG é mais do que uma loja de roupas; é um reflexo da diversidade, força e autenticidade que define as pessoas no Brasil. Nossa essência nasce das raízes do país, e cada peça que criamos busca transmitir a resiliência, coragem e liberdade de quem traça sua própria jornada, seja nas cidades dinâmicas ou nos cantos tranquilos do interior. Nossa moda é pensada para quem busca autenticidade, conforto e estilo, independentemente de gênero. As peças da JG celebram a individualidade e o bem-estar, oferecendo versatilidade e sofisticação em cada detalhe. Com uma paleta de cores neutras e terrosas, inspirada nas paisagens brasileiras, nossas criações conectam-se tanto com a natureza quanto com a essência de cada pessoa. </div>
-        </div>
-        <div class="a-jg-veste">A JG veste com propósito, seja para as rotinas do dia a dia ou para momentos especiais. Criamos roupas que se adaptam a diferentes estilos, corpos e personalidades, proporcionando conforto e elegância em equilíbrio. Nossa marca valoriza a autenticidade e a liberdade de expressão, proporcionando peças que dialogam com quem busca se conectar consigo e com o mundo. Na JG, cada peça é uma celebração de um Brasil forte, diverso e, acima de tudo, AUTÊNTICO.</div>
-        </div>
+        <p>
+            A JG veste com propósito, seja para as rotinas do dia a dia ou para momentos especiais. Criamos roupas que se adaptam a diferentes estilos, corpos e personalidades, proporcionando conforto e elegância em equilíbrio. Nossa marca valoriza a autenticidade e a liberdade de expressão, proporcionando peças que dialogam com quem busca se conectar consigo e com o mundo. Na JG, cada peça é uma celebração de um Brasil forte, diverso e, acima de tudo, AUTÊNTICO.
+        </p>
+    </div>
 
+    <h4>Idealizadoras</h4>
 
-        <div class="idealizadoras">
-            <b class="idealizadoras1">idealizadoras</b>
-            <div class="idealizadoras-child">
+    <div class="team-container">
+        <div class="member">
+            <img src="../Assets/Alice.png" alt="Alice Barbosa Belchior">
+            <p><strong>Alice</strong></p>
+            <div class="social-links">
+                <a href="https://github.com/alicebelchior">GitHub</a> | 
+                <a href="https://www.linkedin.com/in/alice-belchior/">LinkedIn</a>
             </div>
-            <div class="idealizadoras-item">
+        </div>
+        <div class="member">
+            <img src="../Assets/Ana.png" alt="Ana Carolyne Pereira De Souza">
+            <p><strong>Ana</strong></p>
+            <div class="social-links">
+                <a href="https://github.com/anadevti">GitHub</a> | 
+                <a href="https://www.linkedin.com/in/ana-carolyne-pereira-de-souza/">LinkedIn</a>
             </div>
+        </div>
+        <div class="member">
+            <img src="../Assets/fernanda.png" alt="Fernanda Garcia Barbosa">
+            <p><strong>Fernanda</strong></p>
+            <div class="social-links">
+                <a href="https://github.com/NandayGB">GitHub</a> | 
+                <a href="https://www.linkedin.com/in/barbosaafernanda/">LinkedIn</a>
+            </div>
+        </div>
+        <div class="member">
+            <img src="../Assets/Larissa.png" alt="Larissa de Albuquerque Santos">
+            <p><strong>Larissa</strong></p>
+            <div class="social-links">
+                <a href="https://github.com/lalbuquerques">GitHub</a> | 
+                <a href="https://www.linkedin.com/in/larissa-albuquerque-379b40114/">LinkedIn</a>
+            </div>
+        </div>
+        <div class="member">
+            <img src="../Assets/Ludmylla.png" alt="Ludmylla Martins Caetano">
+            <p><strong>Ludmylla</strong></p>
+            <div class="social-links">
+                <a href="https://github.com/ludmyllacaetano">GitHub</a> | 
+                <a href="https://www.linkedin.com/in/ludmylla-caetano/">LinkedIn</a>
+            </div>
+        </div>
+        <div class="member">
+            <img src="../Assets/Juliana.png" alt="Juliana de Jesus Portela">
+            <p><strong>Juliana</strong></p>
+            <div class="social-links">
+                <a href="https://github.com/JulianaPortehla">GitHub</a> | 
+                <a href="https://www.linkedin.com/in/juliana-portela-a2799a6b/">LinkedIn</a>
+            </div>
+        </div>
+        <div class="member">
+            <img src="../Assets/Roberta.png" alt="Roberta da Silva de Oliveira">
+            <p><strong>Roberta</strong></p>
+            <div class="social-links">
+                <a href="https://github.com/RobertaOliveira07">GitHub</a> | 
+                <a href="https://www.linkedin.com/in/roberta-oliveira07/">LinkedIn</a>
+            </div>
+        </div>
+        <div class="member">
+            <img src="../Assets/Yasmin.png" alt="Yasmin Souza Camargo">
+            <p><strong>Yasmin</strong></p>
+            <div class="social-links">
+                <a href="https://github.com/Yasmin-Camargo">GitHub</a> | 
+                <a href="https://www.linkedin.com/in/yasmin-souza-camargo-4a036b163/">LinkedIn</a>
+            </div>
+        </div>
+    </div>
+</div>
 
-            <div class="idealizadoras">
-                <b class="idealizadoras1">idealizadoras</b>
-                <div class="idealizadoras-child">
-                </div>
-                <div class="idealizadoras-item">
-                </div>
-                <div class="ana-carolyne-pereira">Ana Carolyne Pereira De Souza</div>
-                <img class="image-icon" alt="" src="../Assets/Ana.png">
-                <img class="image-icon1" alt="" src="../Assets/Juliana.png">
-                <div class="linkedin-github">Linkedin | GitHub</div>
-                <div class="juliana-de-jesus">Juliana de Jesus Portela</div>
-                <div class="linkedin-github1">Linkedin | GitHub</div>
-                <div class="idealizadoras-inner">
-                </div>
-                <img class="image-icon2" alt="" src="../Assets/Yasmin.png">
-                <div class="larissa-de-albuquerque">Larissa de Albuquerque Santos</div>
-                <img class="image-icon3" alt="" src="../Assets/Larissa.png">
-                <div class="linkedin-github2">Linkedin | GitHub</div>
-                <div class="yasmin-souza-camargo">Yasmin Souza Camargo</div>
-                <div class="linkedin-github3">Linkedin | GitHub</div>
-                <div class="ellipse-div">
-                </div>
-                <div class="idealizadoras-child1">
-                </div>
-                <div class="alice-barbosa-belchior">Alice Barbosa Belchior</div>
-                <img class="image-icon4" alt="" src="../Assets/Alice.png">
-                <img class="image-icon5" alt="" src="../Assets/Ludmylla.png">
-                <div class="linkedin-github4">Linkedin | GitHub</div>
-                <div class="ludmylla-martins-caetano">Ludmylla Martins Caetano </div>
-                <div class="linkedin-github5">Linkedin | GitHub</div>
-                <div class="idealizadoras-child2">
-                </div>
-                <div class="idealizadoras-child3">
-                </div>
-                <div class="fernanda-garcia-barbosa"> Fernanda Garcia Barbosa </div>
-                <img class="image-icon6" alt="" src="../Assets/fernanda.png">
-                <img class="image-icon7" alt="" src="../Assets/Roberta.png">
-                <div class="linkedin-github6">Linkedin | GitHub</div>
-                <div class="roberta-da-silva">Roberta da Silva de Oliveira</div>
-                <div class="linkedin-github7">Linkedin | GitHub</div>
-                </div>
-                
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
