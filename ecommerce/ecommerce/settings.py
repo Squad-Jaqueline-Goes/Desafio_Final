@@ -27,14 +27,17 @@ environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-28@1u7iv&-2@sxc5ovnjz0gp&v1(o*5$z)=xr(e1obx_39%*!s'
+#  SECRET_KEY = 'xjmv-0^l__duq4-xp54m94bsf02lx4&1xka_ykd_(7(5#9^1o^'
+SECRET_KEY = env('SECRET_KEY', default='xjmv-0^l__duq4-xp54m94bsf02lx4&1xka_ykd_(7(5#9^1o^')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = env.bool('DEBUG', default=True)
 
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
 # Stripe Configuration
-stripe.api_key = env("STRIPE_API_KEY")
+STRIPE_API_KEY = env("STRIPE_API_KEY")
+STRIPE_PUB_KEY = env('STRIPE_PUB_KEY')
 
 # Application definition
 
@@ -129,9 +132,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static_local")]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", "media_root")

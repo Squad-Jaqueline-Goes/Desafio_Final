@@ -1,0 +1,20 @@
+{% load static %}
+
+{% block content %}
+  <div class='col-10 col-md-6 mx-auto'>
+    <h1>Add Payment Method</h1>
+    <div id="stripe-key" data-publish-key="{{ publish_key }}" hidden></div>
+    <form id="payment-form" method="POST">
+      {% csrf_token %}
+      <div id="payment-element" class='form-control'>
+        <!-- Stripe Elements will be inserted here -->
+      </div>
+      <button class='btn btn-primary my-3' id="submit">
+        <div class="spinner hidden" id="spinner"></div>
+        <span id="button-text">Submit Payment</span>
+      </button>
+      <div id="payment-message" class="hidden"></div>
+      <div id="next-url" data-url="/"></div>
+    </form>
+  </div>
+{% endblock %}

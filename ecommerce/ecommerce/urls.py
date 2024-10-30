@@ -16,8 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from billing.views import create_payment_intent, payment_method_view
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('store.urls'))
+    path("admin/", admin.site.urls),
+    path("", include("store.urls")),
+    path("create-payment-intent", create_payment_intent, name="create-payment-intent"),
+    path("billing/payment-method/", payment_method_view, name="billing-payment-method"),
 ]
