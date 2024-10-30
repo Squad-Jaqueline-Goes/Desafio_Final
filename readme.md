@@ -1,14 +1,19 @@
-# E-commerce - Squad Jaqueline_Goes 🔬🧬 
-Este é o projeto final de e-commerce desenvolvido durante o bootcamp Python e Django - WoMakers Code 🦋. 
+# JG Fashion - Squad Jaqueline_Goes 🔬🧬 
+Este projeto é uma aplicação e-commerce para gerenciar uma loja de roupas. 🛍️
+
+## Proposta 📋
+Foi desenvolvido durante o bootcamp Python e Django - WoMakers Code 🦋. 
 
 O objetivo é criar uma plataforma de comércio eletrônico utilizando Python e outras tecnologias.
 
 ## Funcionalidades 🚀
-- Cadastro de usuários 👥
-- Listagem de produtos 🛍️
-- Carrinho de compras 🛒
-- Processamento de pagamentos 💳
-- Histórico de pedidos 📜
+- **Listagem de Produtos** 🛍️: Exibição de todos os produtos disponíveis.
+- **Filtragem de Produtos** 🛍️: Filtre produtos por categoria e termo de busca.
+- **Detalhes do Produto**: Visualize informações detalhadas de cada produto.
+- **Cadastro e Login de Usuários** 👥: Crie uma conta ou faça login para acessar funcionalidades exclusivas.
+- **Carrinho de Compras** 🛒: Adicione, remova produtos e finalize suas compras.
+- **Página das Desenvolvedoras**: Conheça as desenvolvedoras do projeto.
+- **Design Responsivo** 📱: Interface adaptável para diferentes tamanhos de tela.
 
 ## Tecnologias Utilizadas 💻
 - Python 🐍
@@ -28,7 +33,7 @@ O objetivo é criar uma plataforma de comércio eletrônico utilizando Python e 
     ```
 3. Crie um ambiente virtual:
     ```bash
-    python -m venv venv
+    python -m venv .venv
     ```
 4. Ative o ambiente virtual:
     - No Windows:
