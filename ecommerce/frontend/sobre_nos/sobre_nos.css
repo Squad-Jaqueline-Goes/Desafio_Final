@@ -1,72 +1,287 @@
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f8f9fa;
+.idealizadoras1 {
+    position: absolute;
+    top: 398px;
+    left: calc(50% - 143px);
+    font-size: 36px;
+    display: inline-block;
+    text-align: left;
+    width: 323px;
 }
-
-.mission-vision {
-    margin: 30px 0;
-}
-
-.team-member {
-    margin-bottom: 30px;
-}
-
-.team-member img {
+.idealizadoras-child {
+    position: absolute;
+    top: 522px;
+    left: 436px;
     border-radius: 50%;
-    max-width: 150px;
-    margin-bottom: 10px;
+    background-color: #d9d9d9;
+    width: 150px;
+    height: 150px;
 }
-
-.idealizadoras {
-    text-align: center;
-    margin-top: 50px;
-}
-
-.idealizadoras h4 {
-    margin-bottom: 30px;
-}
-
-.idealizadoras .member {
-    margin: 20px;
-}
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f8f9fa;
-}
-
-.mission-vision {
-    margin: 30px 0;
-}
-
-.team-member {
-    margin-bottom: 30px;
-}
-
-.team-member img {
+.idealizadoras-item {
+    position: absolute;
+    top: 761px;
+    left: 436px;
     border-radius: 50%;
-    max-width: 150px;
-    margin-bottom: 10px;
+    background-color: #d9d9d9;
+    width: 150px;
+    height: 150px;
 }
-
+.ana-carolyne-pereira {
+    position: absolute;
+    top: 687px;
+    left: 388px;
+}
+.image-icon {
+    position: absolute;
+    top: 522px;
+    left: 436px;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+.image-icon1 {
+    position: absolute;
+    top: 761px;
+    left: 436px;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+.linkedin-github {
+    position: absolute;
+    top: 711px;
+    left: 445px;
+}
+.juliana-de-jesus {
+    position: absolute;
+    top: 931px;
+    left: 414px;
+}
+.linkedin-github1 {
+    position: absolute;
+    top: 955px;
+    left: 445px;
+}
+.idealizadoras-inner {
+    position: absolute;
+    top: 522px;
+    left: 1104px;
+    border-radius: 50%;
+    background-color: #d9d9d9;
+    width: 150px;
+    height: 150px;
+}
+.image-icon2 {
+    position: absolute;
+    top: 761px;
+    left: 1104px;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+.larissa-de-albuquerque {
+    position: absolute;
+    top: 687px;
+    left: 1055px;
+}
+.image-icon3 {
+    position: absolute;
+    top: 522px;
+    left: 1104px;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+.linkedin-github2 {
+    position: absolute;
+    top: 711px;
+    left: 1113px;
+}
+.yasmin-souza-camargo {
+    position: absolute;
+    top: 931px;
+    left: 1082px;
+}
+.linkedin-github3 {
+    position: absolute;
+    top: 955px;
+    left: 1113px;
+}
+.ellipse-div {
+    position: absolute;
+    top: 526px;
+    left: 105px;
+    border-radius: 50%;
+    background-color: #d9d9d9;
+    width: 150px;
+    height: 150px;
+}
+.idealizadoras-child1 {
+    position: absolute;
+    top: 765px;
+    left: 105px;
+    border-radius: 50%;
+    background-color: #d9d9d9;
+    width: 150px;
+    height: 150px;
+}
+.alice-barbosa-belchior {
+    position: absolute;
+    top: 691px;
+    left: 91px;
+}
+.image-icon4 {
+    position: absolute;
+    top: 526px;
+    left: 105px;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+.image-icon5 {
+    position: absolute;
+    top: 765px;
+    left: 105px;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+.linkedin-github4 {
+    position: absolute;
+    top: 715px;
+    left: 114px;
+}
+.ludmylla-martins-caetano {
+    position: absolute;
+    top: 935px;
+    left: 73px;
+}
+.linkedin-github5 {
+    position: absolute;
+    top: 959px;
+    left: 114px;
+}
+.idealizadoras-child2 {
+    position: absolute;
+    top: 522px;
+    left: 800px;
+    border-radius: 50%;
+    background-color: #d9d9d9;
+    width: 150px;
+    height: 150px;
+}
+.idealizadoras-child3 {
+    position: absolute;
+    top: 761px;
+    left: 800px;
+    border-radius: 50%;
+    background-color: #d9d9d9;
+    width: 150px;
+    height: 150px;
+}
+.fernanda-garcia-barbosa {
+    position: absolute;
+    top: 687px;
+    left: 768px;
+}
+.image-icon6 {
+    position: absolute;
+    top: 522px;
+    left: 800px;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+.image-icon7 {
+    position: absolute;
+    top: 761px;
+    left: 800px;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+.linkedin-github6 {
+    position: absolute;
+    top: 711px;
+    left: 809px;
+}
+.roberta-da-silva {
+    position: absolute;
+    top: 931px;
+    left: 765px;
+}
+.linkedin-github7 {
+    position: absolute;
+    top: 955px;
+    left: 809px;
+}
 .idealizadoras {
+    width: 100%;
+    position: relative;
+    background-color: #fff;
+    height: 1024px;
+    overflow: hidden;
     text-align: center;
-    margin-top: 50px;
+    font-size: 16px;
+    color: #000;
+    font-family: Poppins;
 }
 
-.idealizadoras h4 {
-    margin-bottom: 30px;
+.sobre-ns {
+    position: absolute;
+    top: 228px;
+    left: 579px;
+    font-size: 40px;
+    font-weight: 800;
+}
+.a-jg {
+    position: absolute;
+    top: 50px;
+    left: calc(50% - 523px);
+    font-weight: 800;
+    display: inline-block;
+    width: 1046px;
+    height: 506px;
+}
+.a-jg-mais-do-que-uma-loja-de-wrapper {
+    position: absolute;
+    top: 308px;
+    left: 89px;
+    width: 1184px;
+    height: 296px;
+    overflow: hidden;
+    color: #150b0b;
+}
+.a-jg-veste {
+    position: absolute;
+    top: 646px;
+    left: 153px;
+    font-weight: 800;
+    display: inline-block;
+    width: 1051px;
+    height: 260px;
+}
+.sobre-ns-histria {
+    width: 100%;
+    position: relative;
+    background-color: #fff;
+    height: 1024px;
+    overflow: hidden;
+    text-align: left;
+    font-size: 20px;
+    color: #000;
+    font-family: Poppins;
 }
 
-.idealizadoras .member {
-    margin: 20px;
-}
 
-.member img {
-    border-radius: 50%; /* Forma oval */
-    max-width: 120px; /* Tamanho da imagem */
-    margin-bottom: 10px;
-}
+  
 
-.social-links {
-    margin-top: 10px;
-}
+
+
