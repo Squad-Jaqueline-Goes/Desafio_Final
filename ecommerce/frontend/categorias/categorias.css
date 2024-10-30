@@ -1,14 +1,40 @@
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
 }
+
 .category-card {
     margin-bottom: 30px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 .category-card h5 {
     font-size: 1.25rem;
-    color: #9A6B4D; /* Cor personalizada para o título */
+    color: #9A6B4D;
+    margin: 0;
+    padding: 15px;
 }
+
 .category-card p {
-    color: #333; /* Cor da descrição */
+    color: #333;
+    padding: 0 15px 15px;
+}
+
+.category-feminino,
+.category-masculino {
+    background-size: cover;
+    background-position: center;
+    height: 300px; /* Defina uma altura fixa para garantir consistência */
+}
+
+.category-feminino {
+    background-image: url('../Assets/feminino.png');
+}
+
+.category-masculino {
+    background-image: url('../Assets/masculino.jpg');
 }

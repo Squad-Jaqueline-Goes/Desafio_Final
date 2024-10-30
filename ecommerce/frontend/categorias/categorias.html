@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Categorias - E-commerce</title>
+    <title>Categorias - E-commerce</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts - Poppins -->
@@ -12,10 +12,14 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
         }
+
         .category-list {
             margin-top: 30px;
         }
+
         .category-item {
             padding: 50px 15px;
             margin-bottom: 15px;
@@ -23,14 +27,16 @@
             border-radius: 8px;
             background-size: cover;
             background-position: center;
-            position: relative;
             color: white;
             text-align: center;
             transition: background-color 0.3s, transform 0.3s;
+            height: 400px;
         }
+
         .category-item:hover {
             transform: scale(1.05);
         }
+
         .category-item a {
             text-decoration: none;
             color: white;
@@ -38,26 +44,32 @@
             font-weight: bold;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
         }
+
         .dropdown-menu {
             text-align: center;
         }
+
         .dropdown-menu a {
             font-size: 1rem;
             color: #333;
         }
+
         .dropdown-menu a:hover {
             color: #9A6B4D;
         }
 
-        /* Custom background images */
+        /* Imagens de fundo para cada categoria */
         .category-feminino {
-    background-image: url('Assets/feminino.png'); /* URL da imagem para categoria Feminino */
-}
+            background-image: url('../Assets/feminino.png');
+            background-size: cover;
+            background-position: center;
+        }
 
-.category-masculino {
-    background-image: url('Assets/masculino.jpg'); /* URL da imagem para categoria Masculino */
-}
-
+        .category-masculino {
+            background-image: url('../Assets/masculino.jpg');
+            background-size: cover;
+            background-position: center;
+        }
     </style>
 </head>
 <body>
@@ -66,7 +78,7 @@
         <h1 class="text-center mt-5">Categorias</h1>
         <div class="row category-list">
             <!-- Feminino -->
-            <div class="col-md-6">
+            <div class="col-md-6 col-sm-12">
                 <div class="category-item category-feminino">
                     <div class="dropdown">
                         <a class="dropdown-toggle" href="#" role="button" id="femininoDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
