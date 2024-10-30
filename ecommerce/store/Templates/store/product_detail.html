@@ -29,12 +29,12 @@
         .product-title {
             font-size: 2em;
             font-weight: bold;
-            color: #007bff;
+            color: #4a3b2b; 
         }
 
         .product-price {
             font-size: 1.5em;
-            color: #28a745;
+            color: gray;
             font-weight: bold;
         }
 
@@ -63,13 +63,26 @@
             background-color: #e0a800;
             color: #fff;
         }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+        }
+
+        .navbar, .btn {
+            background-color: #8b5e34; 
+            color: #fdfdfd;
+            border: none;
+            padding: 10px 20px;
+        }
     </style>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="/store/">
                 <img src="{% static 'images/logo.png' %}" alt="JG Fashion Logo" width="50">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -77,26 +90,22 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link" href="../../store">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../cart">Carrinho</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Categorias</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Sobre Nós</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../contact">Contato</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../register">Cadastrar</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../login">Login</a></li>
-                    <li class="nav-item">
-                        <form class="form-inline" method="GET" action="{% url 'product_search' %}">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Buscar produtos" name="q" aria-label="Search">
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-                        </form>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="/store/">Home</a></li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="../../cart">Carrinho</a></li>
+                    {% endif %}
+                    <li class="nav-item"><a class="nav-link" href="../../contact">Contato</a></li>
                     {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <form class="display:inline;" method="POST" action="{% url 'logout' %}">
+                            <form class="display:inline;" color="gray"; method="POST" action="{% url 'logout' %}">
                                 {% csrf_token %}
                                 <button class="btn btn-danger" type="submit">Sair</button>
                             </form>
                         </li>
+                    {% else %}
+                        <li class="nav-item"><a class="nav-link" href="../../register">Cadastrar</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../../login">Login</a></li>
+                        
                     {% endif %}
                 </ul>
             </div>
@@ -127,8 +136,6 @@
             <div class="footer-logo mb-3"></div>
             <div class="footer-links mb-3">
                 <a href="index" class="text-white mx-2">Home</a>
-                <a href="#" class="text-white mx-2">Produtos</a>
-                <a href="#" class="text-white mx-2">Categorias</a>
             </div>
             <div class="footer-address mb-2">
                 Av. Das Borboletas, 123 - B. Wonmakers - Porto Alegre/RS CEP: 1234-5678

@@ -11,30 +11,35 @@ from .forms import CustomUserCreationForm
 from .models import Customer, Address
 from django.contrib.auth import logout
 
+from django.db.models import Q
 
 def store(request):
+    query = request.GET.get('q', '')  
+    category_id = request.GET.get('category')  
+
     products = Product.objects.all()
-    categories = Category.objects.all()  
-    context = {'products': products, 'categories': categories}
+    if query:
+        products = products.filter(
+            Q(name__icontains=query) | Q(description__icontains=query)
+        )
+    if category_id:
+        products = products.filter(category_id=category_id)
+
+    categories = Category.objects.all()
+    
+    context = {
+        'products': products,
+        'categories': categories,
+        'selected_category': category_id,
+        'query': query
+    }
     return render(request, 'store/store.html', context)
+
 
 def product_detail(request, id_product):
     product = get_object_or_404(Product, id=id_product)
     context = {'product': product}
     return render(request, 'store/product_detail.html', context)
-
-def product_search(request):
-    query = request.GET.get('q') 
-    products = Product.objects.all()
-
-    if query:
-        products = products.filter(
-            models.Q(name__icontains=query) |
-            models.Q(description__icontains=query) |
-            models.Q(category__name__icontains=query)
-        )
-
-    return render(request, 'store/product_search.html', {'products': products})
 
 
 def get_cart(request):
@@ -42,21 +47,19 @@ def get_cart(request):
         customer = Customer.objects.get(user=request.user)
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
     else:
-        order = None  # Agora, em vez de um dicionário, retornamos None se não autenticado
+        order = None  
     return order
 
 
 @login_required
 def cart(request):
-    # Obter o carrinho do cliente
     order = get_cart(request)
 
     if order:
-        order_items = order.orderitem_set.all()  # Obter todos os itens do pedido
+        order_items = order.orderitem_set.all() 
     else:
         order_items = []
 
-    # Ajuste dos nomes para serem consistentes no template e na view
     context = {
         'order': order,
         'items': order_items,
@@ -85,7 +88,7 @@ def add_to_cart(request, product_id):
         return redirect('cart')
     else:
         messages.error(request, "Você precisa estar logado para adicionar itens ao carrinho.")
-        return render(request, 'cart/checkout.html')
+        return redirect('login')
 
 def remove_from_cart(request, product_id):
     if request.user.is_authenticated:
