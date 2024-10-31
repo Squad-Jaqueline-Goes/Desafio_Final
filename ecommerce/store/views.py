@@ -179,3 +179,7 @@ def logout_view(request):
     logout(request)
     messages.info(request, "Você saiu da sua conta.")
     return redirect('store')
+
+
+def contact(request):
+    return render(request, 'store/contact.html')
