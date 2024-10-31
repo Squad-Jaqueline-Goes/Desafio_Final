@@ -1,77 +1,138 @@
 {% load static %}
+<!DOCTYPE html>
+<html>
 <head>
+    <title>JG Fashion</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/main.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <style>
+        .product-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        .product-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .product-price {
+            font-size: 1em;
+            color: #555;
+        }
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #4a3b2b; /* Tom de marrom para cabeçalhos */
+            font-weight: bold;
+        }
+        .navbar, .btn {
+            background-color: #8b5e34; /* Tom de marrom médio para botões e navegação */
+            color: #fdfdfd;
+            border: none;
+            padding: 10px 20px;
+        }
+    </style>
 </head>
 
-<link rel="stylesheet" type="text/css" href="{% static 'styles/main.css' %}">
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
-        <a class="navbar-brand" href="#">
-    <img src="{% static 'images/logo.png' %}" alt="JG Fashion Logo" width="50">
-</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="../store">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../cart">Carrinho</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Categories</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Sobre Nós</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contato</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<div class="container mt-5">
-    <div class="row product-container">
-        {% for product in products %}
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card product-card">
-                <img class="card-img-top product-image" src="{% static 'images/placeholder.png' %}" alt="{{ product.name }}">
-                <div class="card-body">
-                    <h5 class="card-title product-title">{{ product.name }}</h5>
-                    <p class="card-text product-price">Price: ${{ product.price|floatformat:2 }}</p>
-                </div>
-                <div class="card-footer d-flex justify-content-between">
-                    <a href="{% url 'product_detail' product.id %}" class="btn btn-success view-btn">View</a>
-                    <a href="{% url 'add_to_cart' product.id %}" class="btn btn-warning add-btn">Add to Cart</a> 
-                </div>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/store/">
+                <img src="{% static 'images/logo.png' %}" alt="JG Fashion Logo" width="50">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="/store/">Home</a></li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="../cart">Carrinho</a></li>
+                    {% endif %}
+                    <li class="nav-item"><a class="nav-link" href="../contact">Contato</a></li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <form class="display:inline;" color="gray"; method="POST" action="{% url 'logout' %}">
+                                {% csrf_token %}
+                                <button class="btn btn-danger" type="submit" style="background-color: gray; padding: 8px 20px;  margin-left: 10px;">Sair</button>
+                            </form>
+                        </li>
+                    {% else %}
+                        <li class="nav-item"><a class="nav-link" href="../register">Cadastrar</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../login">Login</a></li>
+                        
+                    {% endif %}
+                </ul>
             </div>
         </div>
-        {% endfor %}
-    </div>
-</div>
+    </nav>
 
-<footer class="footer mt-5">
-    <div class="container text-center">
-        <div class="footer-logo mb-3">
+    <div class="container mt-5">
+        <form class="form-inline mb-4" method="GET" action=".">
+            <input class="form-control mr-sm-2" type="search" placeholder="Buscar produtos" name="q" value="{{ query }}" aria-label="Search">
+            
+            <select class="form-control mr-sm-2" name="category">
+                <option value="">Todas as categorias</option>
+                {% for category in categories %}
+                    <option value="{{ category.id }}" {% if selected_category == category.id|stringformat:"s" %}selected{% endif %}>
+                        {{ category.name }}
+                    </option>
+                {% endfor %}
+            </select>
+            
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+        </form>
 
-</div>
-        <div class="footer-links mb-3">
-            <a href="#" class="text-white mx-2">Home</a>
-            <a href="#" class="text-white mx-2">Products</a>
-            <a href="#" class="text-white mx-2">Categories</a>
+        <div class="row product-container">
+            {% for product in products %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card product-card">
+                    {% if product.image_url %}
+                        <img class="card-img-top product-image" src="{{ product.image_url }}" alt="{{ product.name }}">
+                    {% else %}
+                        <img class="card-img-top product-image" src="{% static 'images/placeholder.png' %}" alt="{{ product.name }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title product-title">{{ product.name }}</h5>
+                        <p class="card-text product-price">Preço: R$ {{ product.price|floatformat:2 }}</p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between">
+                        <a href="{% url 'product_detail' product.id %}" class="btn btn-success view-btn">Ver</a>
+                        <a href="{% url 'add_to_cart' product.id %}" class="btn btn-warning add-btn">Adicionar ao carrinho</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+                <p>Nenhum produto encontrado.</p>
+            {% endfor %}
         </div>
-        <div class="footer-address mb-2">
-            Av. Das Borboletas, 123 - B. Wonmakers - Porto Alegre/RS CEP: 1234-5678
-        </div>
-        <div>&copy; Copyright 2024 JG</div>
     </div>
-</footer>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <footer class="footer mt-5">
+        <div class="container text-center">
+            <div class="footer-logo mb-3"></div>
+            <div class="footer-links mb-3">
+                <a href="#" class="text-white mx-2">Home</a>
+            </div>
+            <div class="footer-address mb-2">
+                Av. Das Borboletas, 123 - B. Wonmakers - Porto Alegre/RS CEP: 1234-5678
+            </div>
+            <div>&copy; Copyright 2024 JG</div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
