@@ -51,6 +51,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://jg-fashion.onrender.com'
+]
+
 ROOT_URLCONF = 'ecommerce.urls'
 
 TEMPLATES = [
