@@ -1,0 +1,150 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pagamento - Checkout</title>
+
+    <!-- Scripts e estilo do Bootstrap e jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+        /* Estilos personalizados para o carrinho */
+        .cart-icon {
+            width: 30px;
+            margin-right: 8px;
+        }
+
+        .cart-title {
+            display: flex;
+            align-items: center;
+            font-size: 2em;
+            font-weight: bold;
+            color: #8b5e34;
+        }
+
+        .list-group-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .product-link {
+            color: gray;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .product-link:hover {
+            text-decoration: underline;
+        }
+
+        .btn-remove {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            transition: background-color 0.3s;
+        }
+
+        .btn-remove:hover {
+            background-color: #c82333;
+        }
+
+        .total {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        .btn-success {
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+        }
+
+        .navbar, .btn {
+            background-color: #8b5e34;
+            color: #fdfdfd;
+            border: none;
+            padding: 10px 20px;
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="{% url 'store' %}" class="navbar-brand mb-0 h1">JG Fashion</a>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1 class="cart-title"><img src="{% static 'path/to/cart-icon.png' %}" class="cart-icon">Pagamento do Pedido</h1>
+        <p>Pedido: {{ order.id }}</p>
+        <p>Total: <span class="total">R$ {{ order.get_cart_total|floatformat:2 }}</span></p>
+
+        <form id="checkout-form" method="POST">
+            {% csrf_token %}
+            <button type="button" id="pay-button" class="btn btn-success">Pagar Agora</button>
+        </form>
+    </div>
+
+    <footer class="footer text-center mt-5">
+        <p>© 2024 JG Fashion - Todos os direitos reservados</p>
+    </footer>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        var stripe = Stripe("{{ stripe_publishable_key }}");
+
+        document.getElementById("pay-button").addEventListener("click", function() {
+            document.getElementById("pay-button").disabled = true;
+            document.getElementById("pay-button").textContent = "Processando...";
+
+            fetch("{% url 'create_checkout_session' %}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": "{{ csrf_token }}"
+                },
+                body: JSON.stringify({
+                    order_id: "{{ order.id }}"
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.sessionId) {
+                    return stripe.redirectToCheckout({ sessionId: data.sessionId });
+                } else {
+                    alert("Erro ao iniciar o pagamento. Tente novamente.");
+                    document.getElementById("pay-button").disabled = false;
+                    document.getElementById("pay-button").textContent = "Pagar Agora";
+                }
+            })
+            .catch(error => {
+                console.error("Erro:", error);
+                alert("Erro ao processar o pagamento. Tente novamente.");
+                document.getElementById("pay-button").disabled = false;
+                document.getElementById("pay-button").textContent = "Pagar Agora";
+            });
+        });
+    </script>
+</body>
+</html>

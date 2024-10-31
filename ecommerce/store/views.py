@@ -8,7 +8,13 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from .models import Customer, Product, Category, Stock, Order, OrderItem, ShippingAddress, Address
 from .forms import CustomUserCreationForm
+import stripe
+from django.conf import settings
+from django.contrib.auth.forms import AuthenticationForm
 
+
+# Inicializa a chave secreta do Stripe
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 def store(request):
     query = request.GET.get('q', '')
@@ -117,33 +123,114 @@ def remove_from_cart(request, product_id):
 
 
 @login_required
+@login_required
 def finalize_order(request):
     customer = Customer.objects.get(user=request.user)
     order = get_object_or_404(Order, customer=customer, complete=False)
     order_items = order.orderitem_set.all()
 
     if request.method == "POST":
-        order.complete = True
-        order.save()
-        order_items.delete()  # Limpa o carrinho
-        messages.success(request, "Pedido finalizado com sucesso!")
-        return redirect('store')
+        # Obtém o token de pagamento do Stripe enviado pelo formulário
+        token = request.POST.get('STRIPE_SECRET_KEY')
 
-    context = {'order': order, 'items': order_items}
+        # Verifique se o token foi recebido
+        if not token:
+            messages.error(request, "Erro no pagamento: token não encontrado.")
+            return redirect('checkout')
+
+        # Calcula o valor do pedido em centavos
+        amount = int(order.get_cart_total() * 100)  # Em centavos para o Stripe
+
+        try:
+            # Cria uma cobrança no Stripe
+            charge = stripe.Charge.create(
+                amount=amount,
+                currency="usd",
+                description=f"Pedido #{order.id}",
+                source=token  # O token é usado aqui como source
+            )
+
+            # Se o pagamento for bem-sucedido, finalize o pedido
+            order.complete = True
+            order.save()
+            order_items.delete()  # Limpa o carrinho após a conclusão
+            messages.success(request, "Pedido finalizado com sucesso e pagamento realizado!")
+            return redirect('store')
+        except stripe.error.CardError as e:
+            messages.error(request, f"Erro no pagamento: {str(e)}")
+            return redirect('checkout')
+
+    context = {
+        'order': order,
+        'items': order_items,
+        'STRIPE_PUBLISHABLE_KEY': settings.STRIPE_PUBLISHABLE_KEY
+    }
     return render(request, 'cart/checkout.html', context)
 
 
 def checkout(request):
     if request.user.is_authenticated:
-        customer = request.user.customer
+        # Verifica ou cria um cliente associado ao usuário autenticado
+        customer, created = Customer.objects.get_or_create(user=request.user)
+
+        # Pega o pedido ou cria um novo se não houver um incompleto
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
+
+        # Itens do pedido
         items = order.orderitem_set.all()
+
+        # Calcule o total de itens e o total do pedido
+        total_items = sum(item.quantity for item in items)
+        total_price = sum(item.product.price * item.quantity for item in items)
     else:
         items = []
-        order = {'get_cart_total': 0, 'get_cart_items': 0}
+        total_items = 0
+        total_price = 0
 
-    context = {'items': items, 'order': order}
+    context = {
+        'items': items,
+        'order': order,
+        'stripe_publishable_key': settings.STRIPE_PUBLISHABLE_KEY,
+        'total_items': total_items,
+        'total_price': total_price,
+    }
     return render(request, 'store/checkout.html', context)
+
+
+def create_checkout_session(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        order_id = data.get('order_id')
+
+        try:
+            # Recupera o pedido
+            order = Order.objects.get(id=order_id, complete=False)
+            amount = int(order.get_cart_total() * 100)  # Valor em centavos
+
+            # Cria a sessão de pagamento
+            session = stripe.checkout.Session.create(
+                payment_method_types=['card'],
+                line_items=[{
+                    'price_data': {
+                        'currency': 'brl',
+                        'product_data': {
+                            'name': f'Pedido #{order.id}',
+                        },
+                        'unit_amount': amount,
+                    },
+                    'quantity': 1,
+                }],
+                mode='payment',
+                success_url=request.build_absolute_uri('/success/'),
+                cancel_url=request.build_absolute_uri('/checkout/'),
+            )
+
+            return JsonResponse({'sessionId': session.id})
+
+        except Order.DoesNotExist:
+            return JsonResponse({'error': 'Pedido não encontrado.'}, status=404)
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=500)
 
 
 def register(request):
