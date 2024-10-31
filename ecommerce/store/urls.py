@@ -1,5 +1,6 @@
 from django.urls import path
 from store import views
+from django.urls import include
 
 urlpatterns = [
     path('', views.store, name="store"),
@@ -14,5 +15,6 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('login/', views.login_view, name='login'),
     path('logout/', views.logout_view, name='logout'),
+    path('accounts/', include('django.contrib.auth.urls')),
 
 ]
