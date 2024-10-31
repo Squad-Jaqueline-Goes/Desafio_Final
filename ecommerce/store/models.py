@@ -21,7 +21,7 @@ class Customer(models.Model):
     email = models.EmailField(max_length=200)
 
     def __str__(self):
-        return self.name
+        return self.name if self.name else "Cliente sem nome"
 
 class Product(models.Model):
     name = models.CharField(max_length=200)
@@ -34,6 +34,24 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+class Stock(models.Model):
+    product = models.OneToOneField(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return f"{self.product.name} - {self.quantity} em estoque"
+
+    def increase_stock(self, amount):
+        self.quantity += amount
+        self.save()
+
+    def decrease_stock(self, amount):
+        if amount <= self.quantity:
+            self.quantity -= amount
+            self.save()
+        else:
+            raise ValueError("Quantidade insuficiente no estoque")
 
 class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)
@@ -54,6 +72,18 @@ class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
     quantity = models.IntegerField(default=0, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        if not self.pk:  # Se o item for novo
+            stock = Stock.objects.get(product=self.product)
+            stock.decrease_stock(self.quantity)
+        super().save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        # Devolver o item ao estoque ao ser removido
+        stock = Stock.objects.get(product=self.product)
+        stock.increase_stock(self.quantity)
+        super().delete(*args, **kwargs)
 
 class ShippingAddress(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
@@ -76,7 +106,7 @@ class Address(models.Model):
     country = models.CharField(max_length=100, default="Brazil")
 
     def __str__(self):
-        return f"{self.user.username} - {self.street}, {self.city}"
+        return f"{self.customer.username} - {self.street}, {self.city}"
 
 class Payment(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)

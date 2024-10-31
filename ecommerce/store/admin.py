@@ -9,6 +9,7 @@ admin.site.register(OrderItem)
 admin.site.register(ShippingAddress)
 admin.site.register(Category)
 admin.site.register(Payment)
+admin.site.register(Stock)
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
