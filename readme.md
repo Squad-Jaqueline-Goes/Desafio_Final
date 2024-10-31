@@ -1,13 +1,20 @@
 # JG Fashion - Squad Jaqueline_Goes 🔬🧬 
 Este projeto é uma aplicação e-commerce para gerenciar uma loja de roupas. 🛍️
 
-![image](https://github.com/user-attachments/assets/4c425853-9b8e-4b82-9d09-013c179a7992)
+![capa](https://github.com/user-attachments/assets/58aa4250-84bd-4639-a0b0-695e21c54197)
 
 
 ## Proposta 📋
-Foi desenvolvido durante o bootcamp Python e Django - WoMakers Code 🦋. 
+Este é o projeto final de e-commerce desenvolvido durante o bootcamp Python e Django da WoMakers Code 🦋.
 
-O objetivo é criar uma plataforma de comércio eletrônico utilizando Python e outras tecnologias.
+O objetivo do projeto é criar uma plataforma de comércio eletrônico utilizando Python e outras tecnologias.
+
+## Sobre a JG Clothing 🌎
+A JG é mais do que uma loja de roupas; é um reflexo da diversidade, força e autenticidade que define o Brasil. Nossa essência nasce das raízes do país, e cada peça busca transmitir a resiliência, coragem e liberdade de quem traça sua própria jornada, seja nas cidades dinâmicas ou nos cantos tranquilos do interior.
+
+Nossa moda é pensada para quem busca autenticidade, conforto e estilo, independentemente de gênero. As peças da JG celebram a individualidade e o bem-estar, oferecendo versatilidade e sofisticação em cada detalhe. Com uma paleta de cores neutras e terrosas, inspirada nas paisagens brasileiras, nossas criações conectam-se tanto com a natureza quanto com a essência de cada pessoa.
+
+A JG veste com propósito, seja para as rotinas do dia a dia ou para momentos especiais. Valorizamos a autenticidade e a liberdade de expressão, proporcionando peças que dialogam com quem busca se conectar consigo e com o mundo. Na JG, cada peça é uma celebração de um Brasil forte, diverso e AUTÊNTICO.
 
 ## Funcionalidades 🚀
 - **Listagem de Produtos** 🛍️: Exibição de todos os produtos disponíveis.
