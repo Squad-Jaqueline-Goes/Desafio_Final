@@ -44,13 +44,12 @@ body {
     margin-right: 10px;
 }
 
-<style>
 .btn-custom {
-background-color: #996633;
-color: #fff;
-border: none;
+    background-color: #996633;
+    color: #fff;
+    border: none;
 }
 
 .btn-custom:hover {
-background-color: #805526; 
+    background-color: #805526; 
 }

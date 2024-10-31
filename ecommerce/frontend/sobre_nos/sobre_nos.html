@@ -1,8 +1,11 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JG Roupas - Sobre Nós</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -21,25 +24,19 @@
         .sobre-nos {
             text-align: center;
             color: #000;
-            font-size: 1rem; 
+            font-size: 1.5rem;
             max-width: 800px;
             margin: 20px auto;
             line-height: 1.6;
         }
-        .team-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
-        }
         .member {
             text-align: center;
-            max-width: 150px;
+            max-width: 180px; 
+            margin: 20px; 
         }
         .member img {
-            width: 100px;
-            height: 100px;
+            width: 150px; 
+            height: 150px;
             object-fit: cover;
             border-radius: 50%;
             border: 2px solid #682D03;
@@ -52,92 +49,230 @@
         .social-links a:hover {
             text-decoration: underline;
         }
+        .navbar {
+            background-color: #996633;
+        }
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+        }
+        .nav-link {
+            color: #fff;
+            font-size: 1.2rem;
+            padding: 10px 15px;
+        }
+        .nav-link:hover {
+            color: #f0f0f0;
+        }
+        .footer-bottom {
+            background-color: #996633;
+            color: #fff;
+            padding: 10px; 
+        }
+
+        .footer-logo {
+            width: 100px;
+            height: auto;
+        }
+
+        .payment-icons img {
+            width: 50px;
+            margin-right: 10px;
+        }
+        .btn-custom {
+            background-color: #996633;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-custom:hover {
+            background-color: #805526; 
+        }
     </style>
 </head>
 <body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a class="navbar-brand" href="#">
+                <img src="../Assets/logo.png" alt="Logo" width="100">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index/index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="categorias.html">Categorias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sobre Nós</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contato</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-search"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-heart"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-cart"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
 
-<div class="container text-center mt-5">
-    <h5>Sobre nós</h5>
-    <div class="sobre-nos mt-4">
-        <p>
-            A JG é mais do que uma loja de roupas; é um reflexo da diversidade, força e autenticidade que define as pessoas no Brasil. Nossa essência nasce das raízes do país, e cada peça que criamos busca transmitir a resiliência, coragem e liberdade de quem traça sua própria jornada, seja nas cidades dinâmicas ou nos cantos tranquilos do interior. Nossa moda é pensada para quem busca autenticidade, conforto e estilo, independentemente de gênero. As peças da JG celebram a individualidade e o bem-estar, oferecendo versatilidade e sofisticação em cada detalhe. Com uma paleta de cores neutras e terrosas, inspirada nas paisagens brasileiras, nossas criações conectam-se tanto com a natureza quanto com a essência de cada pessoa.
-        </p>
+    <div class="container text-center mt-5">
+        <h5>Sobre nós</h5>
+        <div class="sobre-nos mt-4">
+            <p>
+                A JG é mais do que uma loja de roupas; é um reflexo da diversidade, força e autenticidade que define as pessoas no Brasil. Nossa essência nasce das raízes do país, e cada peça que criamos busca transmitir a resiliência, coragem e liberdade de quem traça sua própria jornada, seja nas cidades dinâmicas ou nos cantos tranquilos do interior. Nossa moda é pensada para quem busca autenticidade, conforto e estilo, independentemente de gênero. As peças da JG celebram a individualidade e o bem-estar, oferecendo versatilidade e sofisticação em cada detalhe. Com uma paleta de cores neutras e terrosas, inspirada nas paisagens brasileiras, nossas criações conectam-se tanto com a natureza quanto com a essência de cada pessoa.
+            </p>
+    
+            <p>
+                A JG veste com propósito, seja para as rotinas do dia a dia ou para momentos especiais. Criamos roupas que se adaptam a diferentes estilos, corpos e personalidades, proporcionando conforto e elegância em equilíbrio. Nossa marca valoriza a autenticidade e a liberdade de expressão, proporcionando peças que dialogam com quem busca se conectar consigo e com o mundo. Na JG, cada peça é uma celebração de um Brasil forte, diverso e, acima de tudo, AUTÊNTICO.
+            </p>
+        </div>
 
-        <p>
-            A JG veste com propósito, seja para as rotinas do dia a dia ou para momentos especiais. Criamos roupas que se adaptam a diferentes estilos, corpos e personalidades, proporcionando conforto e elegância em equilíbrio. Nossa marca valoriza a autenticidade e a liberdade de expressão, proporcionando peças que dialogam com quem busca se conectar consigo e com o mundo. Na JG, cada peça é uma celebração de um Brasil forte, diverso e, acima de tudo, AUTÊNTICO.
-        </p>
+        <h4>Idealizadoras</h4>
+
+        <div class="row justify-content-center">
+            <div class="col-md-3 col-sm-6 member">
+                <img src="../Assets/Alice.png" alt="Alice Barbosa Belchior">
+                <p><strong>Alice</strong></p>
+                <div class="social-links">
+                    <a href="https://github.com/alicebelchior">GitHub</a> | 
+                    <a href="https://www.linkedin.com/in/alice-belchior/">LinkedIn</a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 member">
+                <img src="../Assets/Ana.png" alt="Ana Carolyne Pereira De Souza">
+                <p><strong>Ana</strong></p>
+                <div class="social-links">
+                    <a href="https://github.com/anadevti">GitHub</a> | 
+                    <a href="https://www.linkedin.com/in/ana-carolyne-pereira-de-souza/">LinkedIn</a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 member">
+                <img src="../Assets/fernanda.png" alt="Fernanda Garcia Barbosa">
+                <p><strong>Fernanda</strong></p>
+                <div class="social-links">
+                    <a href="https://github.com/NandayGB">GitHub</a> | 
+                    <a href="https://www.linkedin.com/in/barbosaafernanda/">LinkedIn</a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 member">
+                <img src="../Assets/Larissa.png" alt="Larissa de Albuquerque Santos">
+                <p><strong>Larissa</strong></p>
+                <div class="social-links">
+                    <a href="https://github.com/lalbuquerques">GitHub</a> | 
+                    <a href="https://www.linkedin.com/in/larissa-albuquerque-379b40114/">LinkedIn</a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 member">
+                <img src="../Assets/Ludmylla.png" alt="Ludmylla Martins Caetano">
+                <p><strong>Ludmylla</strong></p>
+                <div class="social-links">
+                    <a href="https://github.com/ludmyllacaetano">GitHub</a> | 
+                    <a href="https://www.linkedin.com/in/ludmylla-caetano/">LinkedIn</a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 member">
+                <img src="../Assets/Juliana.png" alt="Juliana de Jesus Portela">
+                <p><strong>Juliana</strong></p>
+                <div class="social-links">
+                    <a href="https://github.com/JulianaPortehla">GitHub</a> | 
+                    <a href="https://www.linkedin.com/in/juliana-portela-a2799a6b/">LinkedIn</a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 member">
+                <img src="../Assets/Roberta.png" alt="Roberta da Silva de Oliveira">
+                <p><strong>Roberta</strong></p>
+                <div class="social-links">
+                    <a href="https://github.com/RobertaOliveira07">GitHub</a> | 
+                    <a href="https://www.linkedin.com/in/roberta-oliveira07/">LinkedIn</a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 member">
+                <img src="../Assets/Yasmin.png" alt="Yasmin Souza Camargo">
+                <p><strong>Yasmin</strong></p>
+                <div class="social-links">
+                    <a href="https://github.com/Yasmin-Camargo">GitHub</a> | 
+                    <a href="https://www.linkedin.com/in/yasmin-souza-camargo-4a036b163/">LinkedIn</a>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <h4>Idealizadoras</h4>
+    <footer class="bg-light text-center text-lg-start">
+        <div class="container p-4">
+            <div class="row">
+                
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <img src="../Assets/logo.png" alt="Logo JG" class="footer-logo mb-2">
+                    <p>Seja autêntico como a JG, estilo único e personalidade marcante.</p>
+                    <input type="email" class="form-control my-2" placeholder="Digite Seu Endereço de E-mail">
+                    <button class="btn w-100 btn-custom">Inscreva-se</button>
+                </div>
 
-    <div class="team-container">
-        <div class="member">
-            <img src="../Assets/Alice.png" alt="Alice Barbosa Belchior">
-            <p><strong>Alice</strong></p>
-            <div class="social-links">
-                <a href="https://github.com/alicebelchior">GitHub</a> | 
-                <a href="https://www.linkedin.com/in/alice-belchior/">LinkedIn</a>
-            </div>
-        </div>
-        <div class="member">
-            <img src="../Assets/Ana.png" alt="Ana Carolyne Pereira De Souza">
-            <p><strong>Ana</strong></p>
-            <div class="social-links">
-                <a href="https://github.com/anadevti">GitHub</a> | 
-                <a href="https://www.linkedin.com/in/ana-carolyne-pereira-de-souza/">LinkedIn</a>
-            </div>
-        </div>
-        <div class="member">
-            <img src="../Assets/fernanda.png" alt="Fernanda Garcia Barbosa">
-            <p><strong>Fernanda</strong></p>
-            <div class="social-links">
-                <a href="https://github.com/NandayGB">GitHub</a> | 
-                <a href="https://www.linkedin.com/in/barbosaafernanda/">LinkedIn</a>
-            </div>
-        </div>
-        <div class="member">
-            <img src="../Assets/Larissa.png" alt="Larissa de Albuquerque Santos">
-            <p><strong>Larissa</strong></p>
-            <div class="social-links">
-                <a href="https://github.com/lalbuquerques">GitHub</a> | 
-                <a href="https://www.linkedin.com/in/larissa-albuquerque-379b40114/">LinkedIn</a>
-            </div>
-        </div>
-        <div class="member">
-            <img src="../Assets/Ludmylla.png" alt="Ludmylla Martins Caetano">
-            <p><strong>Ludmylla</strong></p>
-            <div class="social-links">
-                <a href="https://github.com/ludmyllacaetano">GitHub</a> | 
-                <a href="https://www.linkedin.com/in/ludmylla-caetano/">LinkedIn</a>
-            </div>
-        </div>
-        <div class="member">
-            <img src="../Assets/Juliana.png" alt="Juliana de Jesus Portela">
-            <p><strong>Juliana</strong></p>
-            <div class="social-links">
-                <a href="https://github.com/JulianaPortehla">GitHub</a> | 
-                <a href="https://www.linkedin.com/in/juliana-portela-a2799a6b/">LinkedIn</a>
-            </div>
-        </div>
-        <div class="member">
-            <img src="../Assets/Roberta.png" alt="Roberta da Silva de Oliveira">
-            <p><strong>Roberta</strong></p>
-            <div class="social-links">
-                <a href="https://github.com/RobertaOliveira07">GitHub</a> | 
-                <a href="https://www.linkedin.com/in/roberta-oliveira07/">LinkedIn</a>
-            </div>
-        </div>
-        <div class="member">
-            <img src="../Assets/Yasmin.png" alt="Yasmin Souza Camargo">
-            <p><strong>Yasmin</strong></p>
-            <div class="social-links">
-                <a href="https://github.com/Yasmin-Camargo">GitHub</a> | 
-                <a href="https://www.linkedin.com/in/yasmin-souza-camargo-4a036b163/">LinkedIn</a>
-            </div>
-        </div>
-    </div>
-</div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-dark">Home</a></li>
+                        <li><a href="#" class="text-dark">Produtos</a></li>
+                        <li><a href="#" class="text-dark">Categorias</a></li>
+                    </ul>
+                </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0 text-center">
+                    <h5 class="text-uppercase">Empresa</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-dark">Sobre nós</a></li>
+                        <li><a href="#" class="text-dark">Contato</a></li>
+                        <p>Redes sociais</p>
+                    </ul>
+                    <div class="social-icons d-flex justify-content-center my-2">
+                        <a href="https://www.instagram.com/jg_clothing_project/?igsh=MWhmdThyNDY3bncwOQ%3D%3D" target="_blank" class="me-2">
+                            <img src="../Assets/instagram.png" alt="Instagram" width="30" height="30">
+                        </a>
+                        <a href="https://github.com/Squad-Jaqueline-Goes/Desafio_Final" target="_blank" class="me-2">
+                            <img src="../Assets/github.png" alt="GitHub" width="30" height="30">
+                        </a>
+                    </div>
+                    
+                </div>
+                                    
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Informações</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-dark">Informações de pagamento</a></li>
+                        <li><a href="#" class="text-dark">Pedidos</a></li>
+                        <li><a href="#" class="text-dark">Formas de Pagamento</a></li>
+                    </ul>
+                
+                    <div class="payment-icons mt-3">
+                        <img src="../Assets/elo.png" alt="Elo" width="40">
+                        <img src="../Assets/visa.png" alt="Visa" width="40">
+                        <img src="../Assets/mastercard.png" alt="MasterCard" width="40">
+                        <img src="../Assets/pix.png" alt="Pix" width="40">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom text-center">
+            <p>Av. Das Borboletas, 123 – B. Womakers – Porto Alegre/RS CEP: 1234-5678</p>
+            © 2024 Copyright JG
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
