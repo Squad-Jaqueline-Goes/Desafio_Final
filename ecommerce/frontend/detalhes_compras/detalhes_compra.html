@@ -74,13 +74,100 @@
         .summary-box .finalize-btn:hover {
             background-color: #70472A;
         }
+
+        /* Navbar */
+        .navbar {
+            background-color: #996633;
+        }
+
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .nav-link {
+            color: #fff;
+        }
+
+        .nav-link:hover {
+            color: #f0f0f0;
+        }
+
+        .navbar-nav {
+            flex-direction: row;
+            justify-content: center;
+            width: 100%;
+        }
+
+        /* Footer */
+        .footer-bottom {
+            background-color: #996633;
+            color: #fff;
+            padding: 10px;
+        }
+
+        .footer-logo {
+            width: 100px;
+            height: auto;
+        }
+
+        .payment-icons img {
+            width: 50px;
+            margin-right: 10px;
+        }
+
+        .btn-custom {
+            background-color: #996633;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-custom:hover {
+            background-color: #805526; 
+        }
     </style>
 </head>
 <body>
 
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a class="navbar-brand" href="#">
+                <img src="../Assets/logo.png" alt="Logo" width="75">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Categorias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sobre Nós</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contato</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-search"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-heart"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-cart"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
     <div class="container">
         <div class="row">
-            
             <div class="col-md-7">
                 <div class="purchase-details">
                     <h3>Dados para a compra</h3>
@@ -104,35 +191,33 @@
                                 <label for="state">Estado</label>
                                 <select class="form-control" id="state">
                                     <option>Selecionar</option>
-
-                                    <option>AC</option> <!-- Acre -->
-                                    <option>AL</option> <!-- Alagoas -->
-                                    <option>AP</option> <!-- Amapá -->
-                                    <option>AM</option> <!-- Amazonas -->
-                                    <option>BA</option> <!-- Bahia -->
-                                    <option>CE</option> <!-- Ceará -->
-                                    <option>DF</option> <!-- Distrito Federal -->
-                                    <option>ES</option> <!-- Espírito Santo -->
-                                    <option>GO</option> <!-- Goiás -->
-                                    <option>MA</option> <!-- Maranhão -->
-                                    <option>MT</option> <!-- Mato Grosso -->
-                                    <option>MS</option> <!-- Mato Grosso do Sul -->
-                                    <option>MG</option> <!-- Minas Gerais -->
-                                    <option>PA</option> <!-- Pará -->
-                                    <option>PB</option> <!-- Paraíba -->
-                                    <option>PR</option> <!-- Paraná -->
-                                    <option>PE</option> <!-- Pernambuco -->
-                                    <option>PI</option> <!-- Piauí -->
-                                    <option>RJ</option> <!-- Rio de Janeiro -->
-                                    <option>RN</option> <!-- Rio Grande do Norte -->
-                                    <option>RS</option> <!-- Rio Grande do Sul -->
-                                    <option>RO</option> <!-- Rondônia -->
-                                    <option>RR</option> <!-- Roraima -->
-                                    <option>SC</option> <!-- Santa Catarina -->
-                                    <option>SP</option> <!-- São Paulo -->
-                                    <option>SE</option> <!-- Sergipe -->
-                                    <option>TO</option> <!-- Tocantins -->
-                                    
+                                    <option>AC</option>
+                                    <option>AL</option>
+                                    <option>AP</option>
+                                    <option>AM</option>
+                                    <option>BA</option>
+                                    <option>CE</option>
+                                    <option>DF</option>
+                                    <option>ES</option>
+                                    <option>GO</option>
+                                    <option>MA</option>
+                                    <option>MT</option>
+                                    <option>MS</option>
+                                    <option>MG</option>
+                                    <option>PA</option>
+                                    <option>PB</option>
+                                    <option>PR</option>
+                                    <option>PE</option>
+                                    <option>PI</option>
+                                    <option>RJ</option>
+                                    <option>RN</option>
+                                    <option>RS</option>
+                                    <option>RO</option>
+                                    <option>RR</option>
+                                    <option>SC</option>
+                                    <option>SP</option>
+                                    <option>SE</option>
+                                    <option>TO</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
@@ -158,30 +243,73 @@
                             <label for="email">E-mail</label>
                             <input type="email" class="form-control" id="email" placeholder="Insira o e-mail">
                         </div>
-                        <div class="form-group">
-                            <label for="additionalInfo">Pontuação de Referência (Opcional)</label>
-                            <input type="text" class="form-control" id="additionalInfo" placeholder="Insira informação adicional">
-                        </div>
+                        <!-- Adicione mais campos conforme necessário -->
+                        <button type="submit" class="btn btn-primary">Finalizar Compra</button>
                     </form>
-                </div>
-            </div>
-
-          
-            <div class="col-md-5">
-                <div class="summary-box">
-                    <h4>Produtos</h4>
-                    <p>Produto 1 x 1</p>
-                    <p>Subtotal: R$ 69,99</p>
-                    <p>Frete: R$ 25,00</p>
-                    <p class="total">Total: R$ 94,99</p>
-                    <button class="finalize-btn">Finalizar Pedido</button>
                 </div>
             </div>
         </div>
     </div>
 
-    
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+    <footer class="bg-light text-center text-lg-start">
+        <div class="container p-4">
+            <div class="row">
+                
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <img src="../Assets/logo.png" alt="Logo JG" class="footer-logo mb-2">
+                    <p>Seja autêntico como a JG, estilo único e personalidade marcante.</p>
+                    <input type="email" class="form-control my-2" placeholder="Digite Seu Endereço de E-mail">
+                    <button class="btn w-100 btn-custom">Inscreva-se</button>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-dark">Home</a></li>
+                        <li><a href="#" class="text-dark">Produtos</a></li>
+                        <li><a href="#" class="text-dark">Categorias</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0 text-center">
+                    <h5 class="text-uppercase">Empresa</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-dark">Sobre nós</a></li>
+                        <li><a href="#" class="text-dark">Contato</a></li>
+                        <p>Redes sociais</p>
+                    </ul>
+                    <div class="social-icons d-flex justify-content-center my-2">
+                        <a href="https://www.instagram.com/jg_clothing_project/?igsh=MWhmdThyNDY3bncwOQ%3D%3D" target="_blank" class="me-2">
+                            <img src="../Assets/instagram.png" alt="Instagram" width="30" height="30">
+                        </a>
+                        <a href="https://github.com/Squad-Jaqueline-Goes/Desafio_Final" target="_blank" class="me-2">
+                            <img src="../Assets/github.png" alt="GitHub" width="30" height="30">
+                        </a>
+                    </div>
+                    
+                </div>
+                                    
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Informações</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-dark">Informações de pagamento</a></li>
+                        <li><a href="#" class="text-dark">Pedidos</a></li>
+                        <li><a href="#" class="text-dark">Formas de Pagamento</a></li>
+                    </ul>
+                
+                    <div class="payment-icons mt-3">
+                        <img src="../Assets/elo.png" alt="Elo" width="40">
+                        <img src="../Assets/visa.png" alt="Visa" width="40">
+                        <img src="../Assets/mastercard.png" alt="MasterCard" width="40">
+                        <img src="../Assets/pix.png" alt="Pix" width="40">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom text-center">
+            <p>Av. Das Borboletas, 123 – B. Womakers – Porto Alegre/RS CEP: 1234-5678</p>
+            © 2024 Copyright JG
+        </div>
+    </footer>
+
