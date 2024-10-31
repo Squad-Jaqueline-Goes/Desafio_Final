@@ -6,7 +6,11 @@ admin.site.register(Customer)
 admin.site.register(ShippingAddress)
 admin.site.register(Category)
 admin.site.register(Payment)
+<<<<<<< HEAD
 admin.site.register(Address)
+=======
+admin.site.register(Stock)
+>>>>>>> dev
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):

@@ -21,7 +21,7 @@ class Customer(models.Model):
     email = models.EmailField(max_length=200)
 
     def __str__(self):
-        return self.name
+        return self.name if self.name else "Cliente sem nome"
 
 class Product(models.Model):
     name = models.CharField(max_length=200)
@@ -34,13 +34,9 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
-
-class Stock(models.Model):
-    product = models.OneToOneField(Product, on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField()
-
-    def __str__(self):
-        return f"{self.product.name} - {self.quantity} em estoque"
+        return self.price
+        return self.digital
+        return self.delete_product
 
 class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)
@@ -52,14 +48,16 @@ class Order(models.Model):
         # Certifique-se de que os campos usados aqui não sejam None
         return f"Pedido {self.id} - {self.customer.name if self.customer else 'Cliente Desconhecido'} - {self.transaction_id or 'Sem transação'}"
 
+    def get_total(self):
+        order_items = OrderItem.objects.filter(order=self)
+        total = sum([item.product.price * item.quantity for item in order_items])
+        return total
+
 class OrderItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
     quantity = models.IntegerField(default=0, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"{self.quantity} x {self.product.name} - Pedido {self.order.id}"
 
 class ShippingAddress(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
@@ -82,7 +80,7 @@ class Address(models.Model):
     country = models.CharField(max_length=100, default="Brazil")
 
     def __str__(self):
-        return f"{self.user.username} - {self.street}, {self.city}"
+        return f"{self.customer.username} - {self.street}, {self.city}"
 
 class Payment(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)

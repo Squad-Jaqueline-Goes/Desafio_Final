@@ -1,0 +1,164 @@
+{% load static %}
+<head>
+    <title>JG - Carrinho</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/main.css' %}">
+    <style>
+        /* Estilos personalizados para o carrinho */
+        .cart-icon {
+            width: 30px;
+            margin-right: 8px;
+        }
+
+        .cart-title {
+            display: flex;
+            align-items: center;
+            font-size: 2em;
+            font-weight: bold;
+            color: #8b5e34;
+        }
+
+        .list-group-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .product-link {
+            color: gray;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .product-link:hover {
+            text-decoration: underline;
+        }
+
+        .btn-remove {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            transition: background-color 0.3s;
+        }
+
+        .btn-remove:hover {
+            background-color: #c82333;
+        }
+
+        .total {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        .btn-success {
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+        }
+        .navbar, .btn {
+            background-color: #8b5e34;
+            color: #fdfdfd;
+            border: none;
+            padding: 10px 20px;
+        }
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+        }
+    </style>
+</head>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="/store/">
+            <img src="{% static 'images/logo.png' %}" alt="JG Fashion Logo" width="50">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="/store/">Home</a></li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="../cart">Carrinho</a></li>
+                {% endif %}
+                <li class="nav-item"><a class="nav-link" href="../contact">Contato</a></li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <form class="display:inline;" color="gray"; method="POST" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button class="btn btn-danger" type="submit" style="background-color: gray; padding: 8px 20px;  margin-left: 10px;">Sair</button>
+                        </form>
+                    </li>
+                {% else %}
+                    <li class="nav-item"><a class="nav-link" href="../register">Cadastrar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../login">Login</a></li>
+                    
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="cart-title">
+        <!-- SVG de carrinho de compras -->
+        <svg class="cart-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-10-2h12l1.25-5H7.25l-.45-2H5V7h2.25l1.1 5h9.4L15 15H7.1l-.9-4H4v2h1.2l.9 4h12.3l-1.25 5H8.2l-.9-4H5.8l-.5 2H3v-2h1.25z"></path>
+        </svg>
+        Carrinho de Compras
+    </div>
+
+    {% if items %}
+        <ul class="list-group mt-4">
+        {% for item in items %}
+            <li class="list-group-item">
+                <div>
+                    <a href="{% url 'product_detail' item.product.id %}" class="product-link">{{ item.product.name }}</a> - {{ item.quantity }} x R$ {{ item.product.price|floatformat:2 }}
+                </div>
+                <a href="{% url 'remove_from_cart' item.product.id %}" class="btn-remove">Remover</a>
+            </li>
+        {% endfor %}
+        </ul>
+        <div class="mt-4 total">
+            <p>Total: R$ {{ order.get_total }}</p>
+        </div>
+        <form method="POST" action="{% url 'finalize_order' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success mt-3">Finalizar Compra</button>
+        </form>
+    {% else %}
+        <p class="mt-4">Seu carrinho está vazio.</p>
+    {% endif %}
+
+    <a href="{% url 'store' %}" class="btn btn-primary mt-3">Continuar Comprando</a>
+</div>
+
+<footer class="footer mt-5">
+        <div class="container text-center">
+            <div class="footer-logo mb-3"></div>
+            <div class="footer-links mb-3">
+                <a href="#" class="text-white mx-2">Home</a>
+            </div>
+            <div class="footer-address mb-2">
+                Av. Das Borboletas, 123 - B. Wonmakers - Porto Alegre/RS CEP: 1234-5678
+            </div>
+            <div>&copy; Copyright 2024 JG</div>
+        </div>
+    </footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

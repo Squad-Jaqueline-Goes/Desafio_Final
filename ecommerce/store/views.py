@@ -13,6 +13,9 @@ from django.contrib.auth import logout
 
 
 def store(request):
+    query = request.GET.get('q', '')
+    category_id = request.GET.get('category')
+
     products = Product.objects.all()
     categories = Category.objects.all()  
     context = {'products': products, 'categories': categories}
@@ -55,6 +58,10 @@ def cart(request):
         order_items = order.orderitem_set.all()  # Obter todos os itens do pedido
     else:
         order_items = []
+@login_required
+def cart(request):
+    order = get_cart(request)
+    order_items = order.orderitem_set.all() if order else []
 
     # Ajuste dos nomes para serem consistentes no template e na view
     context = {
@@ -62,7 +69,6 @@ def cart(request):
         'items': order_items,
     }
     return render(request, 'cart/cart.html', context)
-
 
 def add_to_cart(request, product_id):
     if request.user.is_authenticated:
@@ -98,13 +104,88 @@ def updateItem(request):
 
     if request.user.is_authenticated:
         customer = request.user.customer
-        order, created = Order.objects.get_or_create(customer=customer, complete=False)
-        total = float(data['form']['total'])
-        order.transaction_id = transaction_id
+def get_cart(request):
+    if request.user.is_authenticated:
+        customer = Customer.objects.get(user=request.user)
 
-        if total == order.get_cart_total:
-            order.complete = True
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        return order
+    return None
+
+
+@login_required
+def add_to_cart(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    try:
+        stock = Stock.objects.get(product=product)
+        if stock.quantity <= 0:
+            messages.error(request, "Produto fora de estoque.")
+            return redirect('store')
+    except Stock.DoesNotExist:
+        messages.error(request, "Estoque não encontrado para este produto.")
+        return redirect('store')
+
+    customer, _ = Customer.objects.get_or_create(user=request.user, defaults={
+        'name': request.user.username,
+        'email': request.user.email,
+    })
+
+    order = get_cart(request)
+    order_item, created = OrderItem.objects.get_or_create(order=order, product=product)
+
+    if created:
+        order_item.quantity = 1
+    else:
+        order_item.quantity += 1
+
+    order_item.save()
+    stock.decrease_stock(1)
+
+    messages.success(request, f"{product.name} foi adicionado ao carrinho.")
+    return redirect('cart')
+
+
+@login_required
+def remove_from_cart(request, product_id):
+    order = get_cart(request)
+    product = get_object_or_404(Product, id=product_id)
+
+    try:
+        order_item = OrderItem.objects.get(order=order, product=product)
+        stock = Stock.objects.get(product=product)
+
+        if order_item.quantity > 1:
+            order_item.quantity -= 1
+            order_item.save()
+        else:
+            order_item.delete()
+
+        stock.increase_stock(1)
+        messages.success(request, f"Quantidade de {product.name} reduzida ou item removido do carrinho.")
+    except OrderItem.DoesNotExist:
+        messages.error(request, "Esse item não está no seu carrinho.")
+    except Stock.DoesNotExist:
+        messages.error(request, "Estoque não encontrado para este produto.")
+
+    return redirect('cart')
+
+
+@login_required
+def finalize_order(request):
+    customer = Customer.objects.get(user=request.user)
+    order = get_object_or_404(Order, customer=customer, complete=False)
+    order_items = order.orderitem_set.all()
+
+    if request.method == "POST":
+        order.complete = True
         order.save()
+        order_items.delete()  # Limpa o carrinho
+        messages.success(request, "Pedido finalizado com sucesso!")
+        return redirect('store')
+
+    context = {'order': order, 'items': order_items}
+    return render(request, 'cart/checkout.html', context)
+
 
         ShippingAddress.objects.create(
             customer=customer,
@@ -176,3 +257,6 @@ def logout_view(request):
     logout(request)
     messages.info(request, "Você saiu da sua conta.")
     return redirect('store')
+
+def contact(request):
+    return render(request, 'store/contact.html')
