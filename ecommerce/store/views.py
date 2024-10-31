@@ -1,13 +1,15 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
 import json
 import datetime
+from .models import *
 from django.contrib import messages
-from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.decorators import login_required
-from django.db.models import Q
-from .models import Customer, Product, Category, Stock, Order, OrderItem, ShippingAddress, Address
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, authenticate
 from .forms import CustomUserCreationForm
+from .models import Customer, Address
+from django.contrib.auth import logout
 
 
 def store(request):
@@ -15,45 +17,97 @@ def store(request):
     category_id = request.GET.get('category')
 
     products = Product.objects.all()
-    if query:
-        products = products.filter(
-            Q(name__icontains=query) | Q(description__icontains=query)
-        )
-    if category_id:
-        products = products.filter(category_id=category_id)
-
-    categories = Category.objects.all()
-
-    context = {
-        'products': products,
-        'categories': categories,
-        'selected_category': category_id,
-        'query': query
-    }
+    categories = Category.objects.all()  
+    context = {'products': products, 'categories': categories}
     return render(request, 'store/store.html', context)
-
 
 def product_detail(request, id_product):
     product = get_object_or_404(Product, id=id_product)
     context = {'product': product}
     return render(request, 'store/product_detail.html', context)
 
+def product_search(request):
+    query = request.GET.get('q') 
+    products = Product.objects.all()
 
+    if query:
+        products = products.filter(
+            models.Q(name__icontains=query) |
+            models.Q(description__icontains=query) |
+            models.Q(category__name__icontains=query)
+        )
+
+    return render(request, 'store/product_search.html', {'products': products})
+
+
+def get_cart(request):
+    if request.user.is_authenticated:
+        customer = Customer.objects.get(user=request.user)
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+    else:
+        order = None  # Agora, em vez de um dicionário, retornamos None se não autenticado
+    return order
+
+
+@login_required
+def cart(request):
+    # Obter o carrinho do cliente
+    order = get_cart(request)
+
+    if order:
+        order_items = order.orderitem_set.all()  # Obter todos os itens do pedido
+    else:
+        order_items = []
 @login_required
 def cart(request):
     order = get_cart(request)
     order_items = order.orderitem_set.all() if order else []
 
+    # Ajuste dos nomes para serem consistentes no template e na view
     context = {
         'order': order,
         'items': order_items,
     }
     return render(request, 'cart/cart.html', context)
 
+def add_to_cart(request, product_id):
+    if request.user.is_authenticated:
+        customer, created = Customer.objects.get_or_create(user=request.user, defaults={
+	@@ -105,6 +111,26 @@ def remove_from_cart(request, product_id):
+        messages.error(request, "Você precisa estar logado para remover itens do carrinho.")
+        return redirect('login')  
 
+def finalize_order(request):
+    customer = request.user.customer
+    order, created = Order.objects.get_or_create(customer=customer, complete=False)
+    order_items = order.orderitem_set.all()
+
+    if request.method == "POST":
+        order.complete = True
+        order.save()
+        # Clear items in the cart
+        order_items.delete()
+        messages.success(request, "Pedido finalizado com sucesso!")
+        return redirect('store')
+
+    context = {'order': order, 'items': order_items}
+    return render(request, 'cart/checkout.html', context)
+
+
+def contact(request):
+    return render(request, 'store/contact.html')
+
+def updateItem(request):
+    data = json.loads(request.body)
+    productId = data['productId']
+	
+
+    if request.user.is_authenticated:
+        customer = request.user.customer
 def get_cart(request):
     if request.user.is_authenticated:
         customer = Customer.objects.get(user=request.user)
+
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
         return order
     return None
@@ -133,6 +187,20 @@ def finalize_order(request):
     return render(request, 'cart/checkout.html', context)
 
 
+        ShippingAddress.objects.create(
+            customer=customer,
+            order=order,
+            address=data['shipping']['address'],
+            city=data['shipping']['city'],
+            state=data['shipping']['state'],
+            zipcode=data['shipping']['zipcode'],
+        )
+
+    else:
+        print("User is not logged in")
+
+    return JsonResponse('Payment submitted..', safe=False)
+
 def checkout(request):
     if request.user.is_authenticated:
         customer = request.user.customer
@@ -140,11 +208,10 @@ def checkout(request):
         items = order.orderitem_set.all()
     else:
         items = []
-        order = {'get_cart_total': 0, 'get_cart_items': 0}
+        order = {'get_cart_total': 0, 'get_cart_items': 0} 
 
     context = {'items': items, 'order': order}
     return render(request, 'store/checkout.html', context)
-
 
 def register(request):
     if request.method == 'POST':
@@ -167,7 +234,6 @@ def register(request):
 
     return render(request, 'registration/register.html', {'form': form})
 
-
 def login_view(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
@@ -187,12 +253,10 @@ def login_view(request):
         form = AuthenticationForm()
     return render(request, 'registration/login.html', {'form': form})
 
-
 def logout_view(request):
     logout(request)
     messages.info(request, "Você saiu da sua conta.")
     return redirect('store')
-
 
 def contact(request):
     return render(request, 'store/contact.html')
