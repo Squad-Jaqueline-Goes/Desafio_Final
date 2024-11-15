@@ -1,5 +1,6 @@
 # JG Fashion - Squad Jaqueline_Goes 🔬🧬 
 Este projeto é uma aplicação e-commerce para gerenciar uma loja de roupas. 🛍️
+Aplicação em Produção: https://jg-fashion.onrender.com/
 
 ![image](https://github.com/user-attachments/assets/4c425853-9b8e-4b82-9d09-013c179a7992)
 
